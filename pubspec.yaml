@@ -49,6 +49,10 @@ flutter:
     - images/livingRoom.png
     - images/rute.right.png
     - images/rute.left.png
+    - images/rute.right.legUp1.png
+    - images/rute.left.legUp1.png
+    - images/rute.right.legUp2.png
+    - images/rute.left.legUp2.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
