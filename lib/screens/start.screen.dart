@@ -1,3 +1,4 @@
+import 'package:a6_birthday/components/direction.dart';
 import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class _StartScreenState extends State<StartScreen>
   AnimationController moveAnimationController, jumpAnimationController;
   Animation moveAnimation, jumpAnimation;
   double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
+  Direction direction = Direction.right;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class _StartScreenState extends State<StartScreen>
           Rute(
             xOffset: xPos,
             yOffset: yPos,
+            direction: direction
           ),
           SizedBox(
             height: 20,
@@ -43,6 +46,7 @@ class _StartScreenState extends State<StartScreen>
                   title: 'Esquer',
                   color: Colors.green,
                   onPressed: () {
+                    direction = Direction.left;
                     goLeft();
                   }),
               BirthdayButton(
@@ -55,6 +59,7 @@ class _StartScreenState extends State<StartScreen>
                   title: 'Direita',
                   color: Colors.green,
                   onPressed: () {
+                    direction = Direction.right;
                     goRight();
                   }),
             ],
@@ -70,6 +75,10 @@ class _StartScreenState extends State<StartScreen>
       ),
     );
   }
+
+
+
+  
 
   void jump() {
     jumpAnimationController.forward();
@@ -142,3 +151,4 @@ class _StartScreenState extends State<StartScreen>
     super.dispose();
   }
 }
+
