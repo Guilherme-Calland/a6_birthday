@@ -8,10 +8,24 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Start')
-      )
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('images/livingRoom.png'),
+          // fit: BoxFit.fill
+        )
+      ),
+      child: Rute(),
+    );
+  }
+}
+
+class Rute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+      offset: Offset(-300, 5),
+      child: Image.asset('images/rute.right.png'),
     );
   }
 }
