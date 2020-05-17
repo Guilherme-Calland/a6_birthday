@@ -1,3 +1,5 @@
+import 'package:a6_birthday/widgets/birthday.button.dart';
+import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatefulWidget {
@@ -7,30 +9,14 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> with TickerProviderStateMixin{
 
-  AnimationController moveAnimationController;
-  Animation moveAnimation;
-
-  @override
-  void initState(){
-    super.initState();
-    moveAnimationController = AnimationController(
-      duration: Duration( seconds: 2 ),
-      vsync: this,
-      value: 0.04
-    );
-    moveAnimation = Tween<double>(
-      begin: -9,
-      end: 612
-    ).animate(moveAnimationController)
-    ..addListener(() {
-      setState(() {});
-     });
-  }
+  AnimationController moveAnimationController, jumpAnimationController;
+  Animation moveAnimation, jumpAnimation;
+  double xPos, yPos, t, d, v = 0;
 
   @override
   Widget build(BuildContext context) {
 
-    double xPos = moveAnimation.value;
+    xPos = moveAnimation.value;
 
     return Container(
       decoration: BoxDecoration(
@@ -42,75 +28,98 @@ class _StartScreenState extends State<StartScreen> with TickerProviderStateMixin
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox( height: 130,),
-          Transform.translate(
-            offset: Offset(xPos, 0),
-            child: Rute()
-          ),
-          SizedBox( height: 50,),
+          Rute(xOffset: xPos,),
+          SizedBox( height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BirthdayButton(
-                title: 'Esquerda',
+                title: 'Esquer',
                 color: Colors.green,
                 onPressed: (){
-                  moveAnimationController.reverse();
+                  goLeft();
                 }
               ),
               BirthdayButton(
-                title: 'Pular',
+                title: 'Parar',
                 color: Colors.blue,
                 onPressed: (){
+                  stop();
                 }
               ),
               BirthdayButton(
                 title: 'Direita',
                 color: Colors.green,
                 onPressed: (){
-                  moveAnimationController.forward();
+                  goRight();
                 }
               ),
             ],
           ),
+          BirthdayButton(
+            title: 'Pular',
+            color: Colors.purple,
+            onPressed: (){
+
+            },
+          )
         ],
       ),
     );
   }
-}
 
-class BirthdayButton extends StatelessWidget {
+  void startMoving() {
+    moveAnimationController = AnimationController(
+      duration: Duration( seconds: 4 ),
+      vsync: this,
+      value: 0.05
+    );
+    moveAnimation = Tween<double>(
+      begin: -309,
+      end: 312
+    ).animate(moveAnimationController)
+    ..addListener(() {
+      setState(() {});
+    });
+  }
 
-  String title;
-  Color color;
-  Function onPressed;
+  void goRight() {
+    moveAnimationController.forward();
+  }
 
-  BirthdayButton({this.title, this.color, this.onPressed});
+  void stop() {
+    moveAnimationController.stop();
+  }
+
+  void goLeft() {
+    moveAnimationController.reverse();
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8),
-      child: RaisedButton(
-        padding: EdgeInsets.all(20),
-        color: color,
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Colors.white
-          )
-        ),
-        onPressed: onPressed,
-      )
+  void initState(){
+    super.initState();
+    startMoving();
+    jumpAnimationController = AnimationController(
+      duration: Duration( milliseconds: 500 ),
+      vsync: this,
+      value: 0.00
     );
+    jumpAnimation = Tween<double>(
+      begin: 0,
+      end: 500
+    ).animate(jumpAnimationController)
+    ..addListener(() {
+      setState(() {});
+    });
+
+  }
+
+
+  @override
+  void dispose(){
+    moveAnimationController.dispose();
+    jumpAnimationController.dispose();
+    super.dispose();
   }
 }
 
-class Rute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: Offset(-300, 0),
-      child: Image.asset('images/rute.right.png'),
-    );
-  }
-}
