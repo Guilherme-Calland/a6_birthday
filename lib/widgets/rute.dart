@@ -23,6 +23,8 @@ class Rute extends StatelessWidget {
       imagePath = 'rute.left.legUp1';
     } else if(state == ImageState.legUp2Left){
       imagePath = 'rute.left.legUp2';
+    } else if(state == ImageState.openDoor){
+      imagePath = 'rute.left.openDoor';
     }
 
     return Transform.translate(

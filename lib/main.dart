@@ -1,3 +1,4 @@
+import 'package:a6_birthday/screens/level.one.dart';
 import 'package:a6_birthday/screens/menu.screen.dart';
 import 'package:a6_birthday/screens/start.screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class BirthDay extends StatelessWidget {
       routes: {
         'menu.screen' : (context) => MenuScreen(),
         'start.screen' : (context) => StartScreen(),
+        'level.one' : (context) => LevelOne(),
       }
     );
   }

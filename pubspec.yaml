@@ -53,6 +53,7 @@ flutter:
     - images/rute.left.legUp1.png
     - images/rute.right.legUp2.png
     - images/rute.left.legUp2.png
+    - images/rute.left.openDoor.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

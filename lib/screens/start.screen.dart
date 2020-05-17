@@ -1,4 +1,5 @@
 import 'package:a6_birthday/components/components.dart';
+import 'package:a6_birthday/screens/menu.screen.dart';
 import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
@@ -10,19 +11,37 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen>
     with TickerProviderStateMixin {
-  AnimationController moveAnimationController, jumpAnimationController, legsAnimationController;
-  Animation moveAnimation, jumpAnimation, legsAnimation;
+  AnimationController 
+  moveAnimationController, 
+  jumpAnimationController, 
+  legsAnimationController,
+  openDoorAnimationController,
+  changeScreenDelayAnimationController;
+  Animation 
+  moveAnimation, 
+  jumpAnimation, 
+  legsAnimation,
+  openDoorAnimation,
+  changeScreenDelayAnimation;
   double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
   Direction direction = Direction.right;
   ImageState state = ImageState.stillRight;
   bool showOpenDoorButton = false;
+  bool openingDoorSequence = false;
 
   @override
   Widget build(BuildContext context) {
-    xPos = moveAnimation.value;
-    yPos = -s;
 
-    print(xPos);
+    // print(xPos);
+
+
+    if(!openingDoorSequence){
+      xPos = moveAnimation.value;
+      yPos = -s;
+    } else {
+      xPos = 98;
+      yPos = openDoorAnimation.value;
+    }
 
     if(xPos > 41 && xPos < 136){
       showOpenDoorButton = true;
@@ -49,7 +68,7 @@ class _StartScreenState extends State<StartScreen>
           SizedBox(
             height: 20,
           ),
-          Row(
+          !openingDoorSequence ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BirthdayButton(
@@ -75,8 +94,8 @@ class _StartScreenState extends State<StartScreen>
                     goRight();
                   }),
             ],
-          ),
-          Row(
+          ) : SizedBox(),
+          !openingDoorSequence ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BirthdayButton(
@@ -91,11 +110,16 @@ class _StartScreenState extends State<StartScreen>
                 title: 'Abrir porta',
                 color: Colors.orange,
                 onPressed: (){
-                  print('abrir porta');
+                  setState(() {
+                    openingDoorSequence = true;
+                    openDoorAnimationController.forward();
+                    direction = Direction.left;           
+                    legsAnimationController.repeat();
+                  });
                 }
               ) : SizedBox()
             ],
-          ),
+          ) : SizedBox(),
         ],
       ),
     );
@@ -203,6 +227,28 @@ class _StartScreenState extends State<StartScreen>
     startMoving();
     startJumping();
     startLegs();
+    openDoorAnimationController = AnimationController(
+      duration: Duration(seconds: 2), vsync: this, value: 0.0);
+    openDoorAnimation =
+    Tween<double>(begin: -40, end: -120).animate(openDoorAnimationController)
+    ..addListener(() {
+      if(openDoorAnimation.isCompleted){
+        stop();
+        state = ImageState.openDoor;
+        changeScreenDelayAnimationController.forward();
+      }
+    setState(() {});});
+
+    changeScreenDelayAnimationController = AnimationController(
+      duration: Duration(seconds: 1), vsync: this);
+    changeScreenDelayAnimation =
+    Tween<double>(begin: 0, end: 100).animate(changeScreenDelayAnimationController)
+    ..addListener(() {
+      if(changeScreenDelayAnimation.isCompleted){
+        Navigator.pushNamed(context, 'level.one');
+      }
+    setState(() {});});
+    
   }
 
   @override
@@ -210,6 +256,7 @@ class _StartScreenState extends State<StartScreen>
     moveAnimationController.dispose();
     jumpAnimationController.dispose();
     legsAnimationController.dispose();
+    openDoorAnimationController.dispose();
     super.dispose();
   }
 }
