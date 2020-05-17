@@ -8,7 +8,7 @@ class Rute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.translate(
       //inicial posiction
-      offset: Offset(xOffset, 0),
+      offset: Offset(xOffset, yOffset),
       child: Image.asset('images/rute.right.png'),
     );
   }
