@@ -1,4 +1,4 @@
-import 'package:a6_birthday/components/direction.dart';
+import 'package:a6_birthday/components/components.dart';
 import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +10,11 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen>
     with TickerProviderStateMixin {
-  AnimationController moveAnimationController, jumpAnimationController;
-  Animation moveAnimation, jumpAnimation;
+  AnimationController moveAnimationController, jumpAnimationController, legsAnimationController;
+  Animation moveAnimation, jumpAnimation, legsAnimation;
   double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
   Direction direction = Direction.right;
+  ImageState state = ImageState.stillRight;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _StartScreenState extends State<StartScreen>
           Rute(
             xOffset: xPos,
             yOffset: yPos,
-            direction: direction
+            state : state
           ),
           SizedBox(
             height: 20,
@@ -47,6 +48,7 @@ class _StartScreenState extends State<StartScreen>
                   color: Colors.green,
                   onPressed: () {
                     direction = Direction.left;
+                    state = ImageState.stillLeft;
                     goLeft();
                   }),
               BirthdayButton(
@@ -60,6 +62,7 @@ class _StartScreenState extends State<StartScreen>
                   color: Colors.green,
                   onPressed: () {
                     direction = Direction.right;
+                    state = ImageState.stillRight;
                     goRight();
                   }),
             ],
@@ -76,9 +79,9 @@ class _StartScreenState extends State<StartScreen>
     );
   }
 
-
-
-  
+  void moveLegs() {
+    legsAnimationController.repeat();
+  }
 
   void jump() {
     jumpAnimationController.forward();
@@ -86,7 +89,7 @@ class _StartScreenState extends State<StartScreen>
 
   void startMoving() {
     moveAnimationController = AnimationController(
-        duration: Duration(seconds: 4), vsync: this, value: 0.05);
+      duration: Duration(seconds: 6), vsync: this, value: 0.05);
     moveAnimation =
     Tween<double>(begin: -309, end: 312).animate(moveAnimationController)
     ..addListener(() {
@@ -95,26 +98,27 @@ class _StartScreenState extends State<StartScreen>
 
   void goRight() {
     moveAnimationController.forward();
+    moveLegs();
   }
 
   void stop() {
     moveAnimationController.stop();
+    legsAnimationController.stop();
+    setState(() {
+      direction  == Direction.left ? 
+      state = ImageState.stillLeft :
+      state = ImageState.stillRight;
+    });
   }
 
   void goLeft() {
     moveAnimationController.reverse();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    startMoving();
-    startJumping();
+    moveLegs();
   }
 
   void startJumping() {
     jumpAnimationController = AnimationController(
-      duration: Duration(milliseconds: 400), vsync: this, value: 0.00
+      duration: Duration(milliseconds: 500), vsync: this, value: 0.00
     );
     jumpAnimation =
     Tween<double>(begin: 0, end: 500).animate(jumpAnimationController)
@@ -137,6 +141,11 @@ class _StartScreenState extends State<StartScreen>
 
         if(jumpAnimation.isCompleted){
           jumpAnimationController.reset();
+          legsAnimationController.repeat();
+        }
+
+        if(jumpAnimationController.isAnimating){
+          legsAnimationController.stop();
         }
 
         setState(() {});
@@ -144,10 +153,39 @@ class _StartScreenState extends State<StartScreen>
     );
   }
 
+  void startLegs() {
+    legsAnimationController = AnimationController(
+      duration: Duration(milliseconds: 250), vsync: this);
+    legsAnimation =
+    Tween<double>(begin: 1, end: 200).animate(legsAnimationController)
+    ..addListener(() {
+      direction == Direction.left ?
+      (
+        legsAnimation.value >= 100 ?  
+        state = ImageState.legUp1Left :
+        state = ImageState.legUp2Left 
+      )
+      :
+      (
+        legsAnimation.value >= 100 ?
+        state = ImageState.legUp1Right :
+        state = ImageState.legUp2Right
+      );
+    setState(() {});});
+  }
+    @override
+  void initState() {
+    super.initState();
+    startMoving();
+    startJumping();
+    startLegs();
+  }
+
   @override
   void dispose() {
     moveAnimationController.dispose();
     jumpAnimationController.dispose();
+    legsAnimationController.dispose();
     super.dispose();
   }
 }
