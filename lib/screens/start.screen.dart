@@ -15,16 +15,25 @@ class _StartScreenState extends State<StartScreen>
   double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
   Direction direction = Direction.right;
   ImageState state = ImageState.stillRight;
+  bool showOpenDoorButton = false;
 
   @override
   Widget build(BuildContext context) {
     xPos = moveAnimation.value;
     yPos = -s;
 
+    print(xPos);
+
+    if(xPos > 41 && xPos < 136){
+      showOpenDoorButton = true;
+    } else {
+      showOpenDoorButton = false;
+    }
+
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage('images/livingRoom.png'),
+        image: DecorationImage(
+          image: AssetImage('images/livingRoom.png'),
       )),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -67,13 +76,26 @@ class _StartScreenState extends State<StartScreen>
                   }),
             ],
           ),
-          BirthdayButton(
-            title: 'Pular',
-            color: Colors.purple,
-            onPressed: () {
-              jump();
-            },
-          )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BirthdayButton(
+                title: 'Pular',
+                color: Colors.purple,
+                onPressed: () {
+                  jump();
+                },
+              ),
+              showOpenDoorButton ? 
+              BirthdayButton(
+                title: 'Abrir porta',
+                color: Colors.orange,
+                onPressed: (){
+                  print('abrir porta');
+                }
+              ) : SizedBox()
+            ],
+          ),
         ],
       ),
     );
@@ -141,7 +163,9 @@ class _StartScreenState extends State<StartScreen>
 
         if(jumpAnimation.isCompleted){
           jumpAnimationController.reset();
-          legsAnimationController.repeat();
+          if(moveAnimationController.isAnimating){
+            legsAnimationController.repeat();
+          }
         }
 
         if(jumpAnimationController.isAnimating){
