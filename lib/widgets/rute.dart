@@ -6,31 +6,38 @@ class Rute extends StatelessWidget {
   ImageState state;
   Rute({this.xOffset = 0, this.yOffset = 0, this.state = ImageState.stillRight});
 
-  String imagePath = '';
+  var image;
+  var ruteRight = Image.asset('images/rute.right.png');
+  var ruteLeft = Image.asset('images/rute.left.png');
+  var ruteRightLegUp1 = Image.asset('images/rute.right.legUp1.png');
+  var ruteRightLegUp2 = Image.asset('images/rute.right.legUp2.png');
+  var ruteLeftLegUp1 = Image.asset('images/rute.left.legUp1.png');
+  var ruteLeftLegUp2 = Image.asset('images/rute.left.legUp2.png');
+  var ruteLeftOpenDoor = Image.asset('images/rute.left.openDoor.png');
 
   @override
   Widget build(BuildContext context) {
 
     if(state == ImageState.stillRight){
-      imagePath = 'rute.right';
+      image = ruteRight;
     } else  if(state == ImageState.stillLeft){
-      imagePath = 'rute.left';
+      image = ruteLeft;
     } else if(state == ImageState.legUp1Right){
-      imagePath = 'rute.right.legUp1';
+      image = ruteRightLegUp1;
     } else if(state == ImageState.legUp2Right){
-      imagePath = 'rute.right.legUp2';
+      image = ruteRightLegUp2;
     } else if(state  == ImageState.legUp1Left){
-      imagePath = 'rute.left.legUp1';
+      image = ruteLeftLegUp1;
     } else if(state == ImageState.legUp2Left){
-      imagePath = 'rute.left.legUp2';
+      image = ruteLeftLegUp2;
     } else if(state == ImageState.openDoor){
-      imagePath = 'rute.left.openDoor';
+      image = ruteLeftOpenDoor;
     }
 
     return Transform.translate(
       //inicial posiction
       offset: Offset(xOffset, yOffset),
-      child: Image.asset('images/$imagePath.png')
+      child: image
     );
   }
 }
