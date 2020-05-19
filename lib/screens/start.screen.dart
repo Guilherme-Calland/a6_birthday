@@ -224,7 +224,7 @@ class _StartScreenState extends State<StartScreen>
     Tween<double>(begin: 0, end: 100).animate(changeScreenDelayAnimationController)
     ..addListener(() {
       if(changeScreenDelayAnimation.isCompleted){
-        Navigator.pushNamed(context, 'level.one');
+        Navigator.popAndPushNamed(context, 'level.one');
       }
     setState(() {});});
   }
@@ -245,9 +245,6 @@ class _StartScreenState extends State<StartScreen>
 
   @override
   void dispose() {
-    moveAnimationController.dispose();
-    jumpAnimationController.dispose();
-    legsAnimationController.dispose();
     openDoorAnimationController.dispose();
     changeScreenDelayAnimationController.dispose();
     super.dispose();
