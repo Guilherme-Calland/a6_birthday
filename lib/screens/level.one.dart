@@ -16,6 +16,8 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
 
+    // print(loadingLvl1Animation.value);
+
     xPos = moveAnimation.value;
     yPos = -s;
     return Container(
@@ -34,19 +36,20 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
           :
           SizedBox( height: 198,)
           ,
-          !loadingLevelOneScreen ?
+          // !loadingLevelOneScreen ?
           Rute(
             xOffset: xPos,
             yOffset: yPos,
             state : state
-          ) : 
-          Rute(
-            xOffset: -500,
-            yOffset: -500,
-            state: state
-          ),
+          ) ,
+          // :
+          // Rute(
+          //   xOffset: xPos,
+          //   yOffset: yPos,
+          //   state: state
+          // ),
           SizedBox(height : 10),
-          !loadingLevelOneScreen ? 
+          // !loadingLevelOneScreen ? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -72,10 +75,10 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
                 },
               ),
             ],
-          )
-          :
-          SizedBox(),
-          !loadingLevelOneScreen? 
+          ),
+          // :
+          // SizedBox(),
+          // !loadingLevelOneScreen? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -88,7 +91,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
               )
             ],
           )
-          : SizedBox()
+          // : SizedBox()
         ]
       )
     );
@@ -190,30 +193,48 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     );
   }
 
-  void startLoading() {
-    loadingLvl1AnimationController = AnimationController(
-      duration: Duration(milliseconds: 500), vsync: this, value: 0.00);
-    loadingLvl1Animation =
-    Tween<double>(begin: 700, end: 0).animate(loadingLvl1AnimationController)
+  // void startLoading() {
+  //   loadingLvl1AnimationController = AnimationController(
+  //     duration: Duration(milliseconds: 1), vsync: this, value: 0.00);
+  //   loadingLvl1Animation =
+  //   Tween<double>(begin: 1000, end: 0).animate(loadingLvl1AnimationController)
+  //   ..addListener(() {
+  //     if(loadingLvl1Animation.value > 600){
+  //         state = ImageState.arrowOne;
+  //       } else if(loadingLvl1Animation.value > 500){
+  //         state = ImageState.legUp1Left;
+  //       } else if(loadingLvl1Animation.value > 400){
+  //         state = ImageState.legUp2Left;
+  //       } else if (loadingLvl1Animation.value > 300){
+  //         state = ImageState.stillLeft;
+  //       } else if(loadingLvl1Animation.value > 200){
+  //         state = ImageState.legUp1Right;
+  //       } else if(loadingLvl1Animation.value > 100){
+  //         state = ImageState.legUp2Right;
+  //       } else {
+  //         state = ImageState.stillRight;
+  //       }
+  //       if(loadingLvl1Animation.isCompleted){
+  //         loadingLevelOneScreen = false;
+  //       }
+  //   setState(() {});});
+  // }
+
+  
+
+  void startArrow() {
+    levelOneArrowAnimationController = AnimationController(
+      duration: Duration(seconds: 5), vsync: this);
+    levelOneArrowAnimation =
+    Tween<double>(begin: 0, end: 400).animate(levelOneArrowAnimationController)
     ..addListener(() {
-      if(loadingLvl1Animation.value > 600){
-          state = ImageState.arrowOne;
-        } else if(loadingLvl1Animation.value > 500){
-          state = ImageState.legUp1Left;
-        } else if(loadingLvl1Animation.value > 400){
-          state = ImageState.legUp2Left;
-        } else if (loadingLvl1Animation.value > 300){
-          state = ImageState.stillLeft;
-        } else if(loadingLvl1Animation.value > 200){
-          state = ImageState.legUp1Right;
-        } else if(loadingLvl1Animation.value > 100){
-          state = ImageState.legUp2Right;
-        } else {
-          state = ImageState.stillRight;
-        }
-        if(loadingLvl1Animation.isCompleted){
-          loadingLevelOneScreen = false;
-        }
+      if(levelOneArrowAnimation.value >= 100){
+        showLevelOneArrow = true;
+      }
+    
+      if(levelOneArrowAnimation.isCompleted){
+        removeLevelOneArrow = true;
+      }
     setState(() {});});
   }
 
@@ -223,29 +244,13 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     startMoving();
     startLegs();
     startJumping();
-    state = ImageState.stillRight;
     Rute.folder = 'x2';
-    startLoading();
+    state = ImageState.stillRight;
+    // startLoading();
+    // loadingLvl1AnimationController.forward();
     startArrow();
     levelOneArrowAnimationController.forward();
     
-  }
-
-  void startArrow() {
-    loadingLvl1AnimationController.forward();
-    levelOneArrowAnimationController = AnimationController(
-      duration: Duration(seconds: 8), vsync: this);
-    levelOneArrowAnimation =
-    Tween<double>(begin: 0, end: 400).animate(levelOneArrowAnimationController)
-    ..addListener(() {
-      if(levelOneArrowAnimation.value >= 100){
-        showLevelOneArrow = true;
-      }
-    
-      if(levelOneArrowAnimation.value >= 300){
-        removeLevelOneArrow = true;
-      }
-    setState(() {});});
   }
 
   @override

@@ -273,7 +273,7 @@ class _StartScreenState extends State<StartScreen>
     openDoorAnimationController = AnimationController(
       duration: Duration(seconds: 2), vsync: this, value: 0.0);
     openDoorAnimation =
-    Tween<double>(begin: -40, end: -120).animate(openDoorAnimationController)
+    Tween<double>(begin: 20, end: -60).animate(openDoorAnimationController)
     ..addListener(() {
       if(openDoorAnimation.isCompleted){
         stop();
