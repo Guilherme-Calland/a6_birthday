@@ -17,12 +17,14 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
 
     print(xPos);
-
-    if(xPos > -36){
+    print(running);
+    if(xPos > -28){
       running = true;
     } else {
       running = false;
     }
+
+
 
     xPos = moveAnimation.value;
     yPos = -s;
@@ -56,60 +58,61 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
           ),
           SizedBox(height : 10),
           !loadingLevelOneScreen ? 
-          !running ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              BirthdayButton(
-                title: 'Esquer',
-                color: Colors.green,
-                onPressed: (){
-                  goLeft();
-                },
-              ),
-              BirthdayButton(
-                title: 'Parar',
-                color: Colors.red,
-                onPressed: (){
-                  stop();
-                },
-              ),
-              BirthdayButton(
-                title: 'Direita',
-                color: Colors.green,
-                onPressed: (){
-                  goRight();
-                },
-              ),
-            ],
-          ) :
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              BirthdayButton(
-                title: 'Correr Esq',
-                color: Colors.purple,
-                onPressed: (){
-                  goLeft();
-                },
-              ),
-              BirthdayButton(
-                title: 'Parar',
-                color: Colors.red,
-                onPressed: (){
-                  stop();
-                },
-              ),
-              BirthdayButton(
-                title: 'Correr Dir',
-                color: Colors.purple,
-                onPressed: (){
-                  goRight();
-                },
-              ),
-            ],
-          )
+            !running ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                BirthdayButton(
+                  title: 'Esquer',
+                  color: Colors.green,
+                  onPressed: (){
+                    goLeft();
+                  },
+                ),
+                BirthdayButton(
+                  title: 'Parar',
+                  color: Colors.red,
+                  onPressed: (){
+                    stop();
+                  },
+                ),
+                BirthdayButton(
+                  title: 'Direita',
+                  color: Colors.green,
+                  onPressed: (){
+                    goRight();
+                  },
+                ),
+              ],
+            ) 
           :
-          SizedBox(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                BirthdayButton(
+                  title: 'Correr Esq',
+                  color: Colors.purple,
+                  onPressed: (){
+                    goLeft();
+                  },
+                ),
+                BirthdayButton(
+                  title: 'Parar',
+                  color: Colors.red,
+                  onPressed: (){
+                    stop();
+                  },
+                ),
+                BirthdayButton(
+                  title: 'Correr Dir',
+                  color: Colors.purple,
+                  onPressed: (){
+                    goRight();
+                  },
+                ),
+              ],
+            )
+          :
+            SizedBox(),
           !loadingLevelOneScreen? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -172,18 +175,32 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     legsAnimation =
     Tween<double>(begin: 1, end: 200).animate(legsAnimationController)
     ..addListener(() {
-      direction == Direction.left ?
-      (
-        legsAnimation.value >= 100 ?  
-        state = ImageState.legUp1Left :
-        state = ImageState.legUp2Left 
-      )
+      !running ?
+        direction == Direction.left ?
+        (
+          legsAnimation.value >= 100 ?  
+          state = ImageState.legUp1Left :
+          state = ImageState.legUp2Left 
+        )
+        :
+        (
+          legsAnimation.value >= 100 ?
+          state = ImageState.legUp1Right :
+          state = ImageState.legUp2Right
+        )
       :
-      (
-        legsAnimation.value >= 100 ?
-        state = ImageState.legUp1Right :
-        state = ImageState.legUp2Right
-      );
+        direction == Direction.left ?
+        (
+          legsAnimation.value >= 100 ?  
+          state = ImageState.leftRunning1 :
+          state = ImageState.leftRunning2 
+        )
+        :
+        (
+          legsAnimation.value >= 100 ?
+          state = ImageState.rightRunning1 :
+          state = ImageState.rightRunning2
+        );
     setState(() {});});
   }
 
@@ -227,28 +244,39 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
 
   void startLoading() {
     loadingLvl1AnimationController = AnimationController(
-      duration: Duration(seconds: 1), vsync: this, value: 0.00);
+      duration: Duration(seconds: 2), vsync: this, value: 0.00);
     loadingLvl1Animation =
-    Tween<double>(begin: 1000, end: 0).animate(loadingLvl1AnimationController)
+    Tween<double>(begin: 1200, end: 0).animate(loadingLvl1AnimationController)
     ..addListener(() {
-      if(loadingLvl1Animation.value > 600){
-          state = ImageState.arrowOne;
-        } else if(loadingLvl1Animation.value > 500){
-          state = ImageState.legUp1Left;
-        } else if(loadingLvl1Animation.value > 400){
-          state = ImageState.legUp2Left;
-        } else if (loadingLvl1Animation.value > 300){
-          state = ImageState.stillLeft;
-        } else if(loadingLvl1Animation.value > 200){
-          state = ImageState.legUp1Right;
-        } else if(loadingLvl1Animation.value > 100){
-          state = ImageState.legUp2Right;
-        } else {
-          state = ImageState.stillRight;
-        }
-        if(loadingLvl1Animation.isCompleted){
-          loadingLevelOneScreen = false;
-        }
+      if(loadingLvl1Animation.value > 1000){
+        state = ImageState.rightRunning2;
+      }
+      else if(loadingLvl1Animation.value > 900){
+        state = ImageState.rightRunning1;
+      }
+      else if(loadingLvl1Animation.value > 800){
+        state = ImageState.leftRunning2;
+      }
+      else if(loadingLvl1Animation.value > 700){
+        state = ImageState.leftRunning1;
+      }else if(loadingLvl1Animation.value > 600){
+        state = ImageState.arrowOne;
+      } else if(loadingLvl1Animation.value > 500){
+        state = ImageState.legUp1Left;
+      } else if(loadingLvl1Animation.value > 400){
+        state = ImageState.legUp2Left;
+      } else if (loadingLvl1Animation.value > 300){
+        state = ImageState.stillLeft;
+      } else if(loadingLvl1Animation.value > 200){
+        state = ImageState.legUp1Right;
+      } else if(loadingLvl1Animation.value > 100){
+        state = ImageState.legUp2Right;
+      } else {
+        state = ImageState.stillRight;
+      }
+      if(loadingLvl1Animation.isCompleted){
+        loadingLevelOneScreen = false;
+      }
     setState(() {});});
   }
 
