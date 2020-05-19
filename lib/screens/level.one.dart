@@ -16,7 +16,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
 
     xPos = moveAnimation.value;
-    yPos = 0;
+    yPos = -s;
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage
@@ -58,10 +58,27 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
                 },
               ),
             ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BirthdayButton(
+                color: Colors.blue,
+                title: 'Pular',
+                onPressed: (){
+                  jump();
+                },
+              )
+            ],
           )
         ]
       )
     );
+  }
+
+  void jump() {
+    jumpAnimationController.forward();
+    legsAnimationController.stop();
   }
 
   void goRight() {
@@ -117,11 +134,50 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     setState(() {});});
   }
 
+  void startJumping() {
+    jumpAnimationController = AnimationController(
+      duration: Duration(milliseconds: 500), vsync: this, value: 0.00
+    );
+    jumpAnimation =
+    Tween<double>(begin: 0, end: 500).animate(jumpAnimationController)
+      ..addListener(() {
+        double s0 = 0;
+        double v0 = 0.5;
+        double vf = -0.5;
+        double t0 = 0;
+        double tf = 500;
+        double a = (vf - v0) / (tf - t0);
+
+        t = jumpAnimation.value;
+        v = v0 + a * t;
+        s = s0 + v0 * t + a * t * t / 2;
+
+        print('value of s: ' + s.toString());
+        print('value of t: ' + t.toString());
+        print('value of v: ' + v.toString());
+        print('');
+
+        if(jumpAnimation.isCompleted){
+          jumpAnimationController.reset();
+          if(moveAnimationController.isAnimating){
+            legsAnimationController.repeat();
+          }
+        }
+
+        if(jumpAnimationController.isAnimating){
+          legsAnimationController.stop();
+        }
+        setState(() {});
+      }
+    );
+  }
+
   @override
   void initState(){
     super.initState();
     startMoving();
     startLegs();
+    startJumping();
     state = ImageState.stillRight;
     Rute.folder = 'x2';
     yPos = 0;
@@ -130,7 +186,6 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   @override
   void dispose(){
     super.dispose();
-    moveAnimationController.dispose();
-    legsAnimationController.dispose();    
+
   }
 }
