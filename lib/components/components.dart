@@ -30,6 +30,7 @@ Direction direction = Direction.right;
 ImageState state = ImageState.stillRight;
 bool showOpenDoorButton = false;
 bool openingDoorSequence = false;
+bool loadingStartScreen = true;
 
 var livingRoom = AssetImage('images/scenario/livingRoom.png');
 var gameMenu = AssetImage('images/scenario/menu4.png');

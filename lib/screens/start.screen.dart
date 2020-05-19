@@ -26,11 +26,19 @@ class _StartScreenState extends State<StartScreen>
         )
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        
         children: <Widget>[
+          !loadingStartScreen ?
           SizedBox(
-            height: 130,
-          ),
+            height: 150,
+          ) : 
+          SizedBox(),
+          loadingStartScreen ? 
+          Rute(
+            xOffset: -500,
+            yOffset: -500,
+            state : state
+          ) :
           Rute(
             xOffset: xPos,
             yOffset: yPos,
@@ -39,7 +47,7 @@ class _StartScreenState extends State<StartScreen>
           SizedBox(
             height: 20,
           ),
-          !openingDoorSequence ? Row(
+          !openingDoorSequence && !loadingStartScreen ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BirthdayButton(
@@ -66,7 +74,7 @@ class _StartScreenState extends State<StartScreen>
                   }),
             ],
           ) : SizedBox(),
-          !openingDoorSequence ? Row(
+          !openingDoorSequence && !loadingStartScreen? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BirthdayButton(
@@ -75,7 +83,7 @@ class _StartScreenState extends State<StartScreen>
                 onPressed: () {
                   jump();
                 },
-              ),
+              ), 
               showOpenDoorButton ? 
               BirthdayButton(
                 title: 'Abrir porta',
@@ -224,7 +232,7 @@ class _StartScreenState extends State<StartScreen>
 
     void startLoading() {
       loadingAnimationController = AnimationController(
-        duration: Duration(seconds: 1), vsync: this);
+        duration: Duration(milliseconds: 500), vsync: this);
       loadingAnimation =
       Tween<double>(begin: 700, end: 0).animate(loadingAnimationController)
       ..addListener(() {
@@ -242,6 +250,9 @@ class _StartScreenState extends State<StartScreen>
           state = ImageState.legUp2Right;
         } else {
           state = ImageState.stillRight;
+        }
+        if(loadingAnimation.isCompleted){
+          loadingStartScreen = false;
         }
       setState(() {});});
     }
