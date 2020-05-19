@@ -17,6 +17,8 @@ class _StartScreenState extends State<StartScreen>
     setPosition();
     setDoorConditions();
 
+    print(loadingAnimation.value);
+
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -215,7 +217,34 @@ class _StartScreenState extends State<StartScreen>
     startLegs();
     openDoorSequence();
     changeScreenDelay();
+    startLoading();
+    loadingAnimationController.forward();
+    
   }
+
+    void startLoading() {
+      loadingAnimationController = AnimationController(
+        duration: Duration(seconds: 1), vsync: this);
+      loadingAnimation =
+      Tween<double>(begin: 700, end: 0).animate(loadingAnimationController)
+      ..addListener(() {
+        if(loadingAnimation.value > 600){
+          state = ImageState.openDoor;
+        } else if(loadingAnimation.value > 500){
+          state = ImageState.legUp1Left;
+        } else if(loadingAnimation.value > 400){
+          state = ImageState.legUp2Left;
+        } else if (loadingAnimation.value > 300){
+          state = ImageState.stillLeft;
+        } else if(loadingAnimation.value > 200){
+          state = ImageState.legUp1Right;
+        } else if(loadingAnimation.value > 100){
+          state = ImageState.legUp2Right;
+        } else {
+          state = ImageState.stillRight;
+        }
+      setState(() {});});
+    }
 
   void changeScreenDelay() {
     changeScreenDelayAnimationController = AnimationController(

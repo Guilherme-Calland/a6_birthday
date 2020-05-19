@@ -16,13 +16,15 @@ AnimationController
   jumpAnimationController, 
   legsAnimationController,
   openDoorAnimationController,
-  changeScreenDelayAnimationController;
+  changeScreenDelayAnimationController,
+  loadingAnimationController;
 Animation 
   moveAnimation, 
   jumpAnimation, 
   legsAnimation,
   openDoorAnimation,
-  changeScreenDelayAnimation;
+  changeScreenDelayAnimation,
+  loadingAnimation;
 double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
 Direction direction = Direction.right;
 ImageState state = ImageState.stillRight;
