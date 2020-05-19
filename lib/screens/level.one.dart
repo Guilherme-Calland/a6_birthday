@@ -16,7 +16,13 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
 
-    // print(loadingLvl1Animation.value);
+    print(xPos);
+
+    if(xPos > -36){
+      running = true;
+    } else {
+      running = false;
+    }
 
     xPos = moveAnimation.value;
     yPos = -s;
@@ -36,21 +42,21 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
           :
           SizedBox( height: 198,)
           ,
-          // !loadingLevelOneScreen ?
+          !loadingLevelOneScreen ?
           Rute(
             xOffset: xPos,
             yOffset: yPos,
             state : state
-          ) ,
-          // :
-          // Rute(
-          //   xOffset: xPos,
-          //   yOffset: yPos,
-          //   state: state
-          // ),
+          ) 
+          :
+          Rute(
+            xOffset: xPos,
+            yOffset: 200,
+            state: state
+          ),
           SizedBox(height : 10),
-          // !loadingLevelOneScreen ? 
-          Row(
+          !loadingLevelOneScreen ? 
+          !running ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BirthdayButton(
@@ -75,10 +81,36 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
                 },
               ),
             ],
-          ),
-          // :
-          // SizedBox(),
-          // !loadingLevelOneScreen? 
+          ) :
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BirthdayButton(
+                title: 'Correr Esq',
+                color: Colors.purple,
+                onPressed: (){
+                  goLeft();
+                },
+              ),
+              BirthdayButton(
+                title: 'Parar',
+                color: Colors.red,
+                onPressed: (){
+                  stop();
+                },
+              ),
+              BirthdayButton(
+                title: 'Correr Dir',
+                color: Colors.purple,
+                onPressed: (){
+                  goRight();
+                },
+              ),
+            ],
+          )
+          :
+          SizedBox(),
+          !loadingLevelOneScreen? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -91,7 +123,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
               )
             ],
           )
-          // : SizedBox()
+          : SizedBox()
         ]
       )
     );
@@ -127,7 +159,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
 
   void startMoving() {
     moveAnimationController = AnimationController(
-      duration: Duration(seconds: 6), vsync: this, value: 0.05);
+      duration: Duration(seconds: 12), vsync: this, value: 0.05);
     moveAnimation =
     Tween<double>(begin: -392, end: 440).animate(moveAnimationController)
     ..addListener(() {
@@ -193,32 +225,32 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     );
   }
 
-  // void startLoading() {
-  //   loadingLvl1AnimationController = AnimationController(
-  //     duration: Duration(milliseconds: 1), vsync: this, value: 0.00);
-  //   loadingLvl1Animation =
-  //   Tween<double>(begin: 1000, end: 0).animate(loadingLvl1AnimationController)
-  //   ..addListener(() {
-  //     if(loadingLvl1Animation.value > 600){
-  //         state = ImageState.arrowOne;
-  //       } else if(loadingLvl1Animation.value > 500){
-  //         state = ImageState.legUp1Left;
-  //       } else if(loadingLvl1Animation.value > 400){
-  //         state = ImageState.legUp2Left;
-  //       } else if (loadingLvl1Animation.value > 300){
-  //         state = ImageState.stillLeft;
-  //       } else if(loadingLvl1Animation.value > 200){
-  //         state = ImageState.legUp1Right;
-  //       } else if(loadingLvl1Animation.value > 100){
-  //         state = ImageState.legUp2Right;
-  //       } else {
-  //         state = ImageState.stillRight;
-  //       }
-  //       if(loadingLvl1Animation.isCompleted){
-  //         loadingLevelOneScreen = false;
-  //       }
-  //   setState(() {});});
-  // }
+  void startLoading() {
+    loadingLvl1AnimationController = AnimationController(
+      duration: Duration(seconds: 1), vsync: this, value: 0.00);
+    loadingLvl1Animation =
+    Tween<double>(begin: 1000, end: 0).animate(loadingLvl1AnimationController)
+    ..addListener(() {
+      if(loadingLvl1Animation.value > 600){
+          state = ImageState.arrowOne;
+        } else if(loadingLvl1Animation.value > 500){
+          state = ImageState.legUp1Left;
+        } else if(loadingLvl1Animation.value > 400){
+          state = ImageState.legUp2Left;
+        } else if (loadingLvl1Animation.value > 300){
+          state = ImageState.stillLeft;
+        } else if(loadingLvl1Animation.value > 200){
+          state = ImageState.legUp1Right;
+        } else if(loadingLvl1Animation.value > 100){
+          state = ImageState.legUp2Right;
+        } else {
+          state = ImageState.stillRight;
+        }
+        if(loadingLvl1Animation.isCompleted){
+          loadingLevelOneScreen = false;
+        }
+    setState(() {});});
+  }
 
   
 
@@ -228,7 +260,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     levelOneArrowAnimation =
     Tween<double>(begin: 0, end: 400).animate(levelOneArrowAnimationController)
     ..addListener(() {
-      if(levelOneArrowAnimation.value >= 100){
+      if(levelOneArrowAnimation.value >= 200){
         showLevelOneArrow = true;
       }
     
@@ -246,8 +278,8 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     startJumping();
     Rute.folder = 'x2';
     state = ImageState.stillRight;
-    // startLoading();
-    // loadingLvl1AnimationController.forward();
+    startLoading();
+    loadingLvl1AnimationController.forward();
     startArrow();
     levelOneArrowAnimationController.forward();
     

@@ -1,4 +1,5 @@
 import 'package:a6_birthday/components/components.dart';
+import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -15,7 +16,17 @@ class _MenuScreenState extends State<MenuScreen> {
         (
           image: gameMenu,
         )
-      )
+      ),
+      child: Column(
+        children: <Widget>[
+          BirthdayButton(
+            title: 'Começar',
+            color: Colors.red,
+            onPressed: () => Navigator.popAndPushNamed(context, 'start.screen'),
+
+          )
+        ],
+      ),
     );
   }
 }

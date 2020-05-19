@@ -232,9 +232,9 @@ class _StartScreenState extends State<StartScreen>
 
     void startLoading() {
       loadingAnimationController = AnimationController(
-        duration: Duration(milliseconds: 500), vsync: this);
+        duration: Duration(seconds: 1), vsync: this);
       loadingAnimation =
-      Tween<double>(begin: 700, end: 0).animate(loadingAnimationController)
+      Tween<double>(begin: 1000, end: 0).animate(loadingAnimationController)
       ..addListener(() {
         if(loadingAnimation.value > 600){
           state = ImageState.openDoor;

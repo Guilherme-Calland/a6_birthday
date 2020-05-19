@@ -39,6 +39,7 @@ bool loadingStartScreen = true;
 bool loadingLevelOneScreen = true;
 bool showLevelOneArrow = false;
 bool removeLevelOneArrow = false;
+bool running = false;
 
 var livingRoom = AssetImage('images/scenario/livingRoom.png');
 var gameMenu = AssetImage('images/scenario/menu4.png');
