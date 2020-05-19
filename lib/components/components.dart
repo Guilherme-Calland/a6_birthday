@@ -29,4 +29,6 @@ ImageState state = ImageState.stillRight;
 bool showOpenDoorButton = false;
 bool openingDoorSequence = false;
 
-var livingRoom = AssetImage('images/livingRoom.png');
+var livingRoom = AssetImage('images/scenario/livingRoom.png');
+var gameMenu = AssetImage('images/scenario/menu4.png');
+var ruaJacobina = AssetImage('images/scenario/ruaJacobina.png');

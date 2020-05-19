@@ -2,10 +2,17 @@ import 'package:a6_birthday/screens/level.one.dart';
 import 'package:a6_birthday/screens/menu.screen.dart';
 import 'package:a6_birthday/screens/start.screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
-  runApp(BirthDay());
-}
+void main() async => {
+  WidgetsFlutterBinding.ensureInitialized(),
+
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.landscapeLeft, 
+       DeviceOrientation.landscapeRight
+      ]),
+  runApp(BirthDay())
+};
 
 class BirthDay extends StatelessWidget {
   @override
@@ -16,7 +23,7 @@ class BirthDay extends StatelessWidget {
         primarySwatch: Colors.red,
         secondaryHeaderColor: Colors.red
       ),
-      initialRoute: 'start.screen',
+      initialRoute: 'level.one',
       routes: {
         'menu.screen' : (context) => MenuScreen(),
         'start.screen' : (context) => StartScreen(),

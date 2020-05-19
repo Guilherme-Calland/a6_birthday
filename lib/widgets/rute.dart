@@ -2,18 +2,19 @@ import 'package:a6_birthday/components/components.dart';
 import 'package:flutter/material.dart';
 
 class Rute extends StatelessWidget {
+  static String folder = 'x3';
   double xOffset, yOffset;
   ImageState state;
   Rute({this.xOffset = 0, this.yOffset = 0, this.state = ImageState.stillRight});
 
   var image;
-  var ruteRight = Image.asset('images/rute.right.png');
-  var ruteLeft = Image.asset('images/rute.left.png');
-  var ruteRightLegUp1 = Image.asset('images/rute.right.legUp1.png');
-  var ruteRightLegUp2 = Image.asset('images/rute.right.legUp2.png');
-  var ruteLeftLegUp1 = Image.asset('images/rute.left.legUp1.png');
-  var ruteLeftLegUp2 = Image.asset('images/rute.left.legUp2.png');
-  var ruteLeftOpenDoor = Image.asset('images/rute.left.openDoor.png');
+  var ruteRight = Image.asset('images/rute/$folder/rute.right.png');
+  var ruteLeft = Image.asset('images/rute/$folder/rute.left.png');
+  var ruteRightLegUp1 = Image.asset('images/rute/$folder/rute.right.legUp1.png');
+  var ruteRightLegUp2 = Image.asset('images/rute/$folder/rute.right.legUp2.png');
+  var ruteLeftLegUp1 = Image.asset('images/rute/$folder/rute.left.legUp1.png');
+  var ruteLeftLegUp2 = Image.asset('images/rute/$folder/rute.left.legUp2.png');
+  var ruteLeftOpenDoor = Image.asset('images/rute/$folder/rute.left.openDoor.png');
 
   @override
   Widget build(BuildContext context) {

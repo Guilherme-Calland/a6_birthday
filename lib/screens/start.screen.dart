@@ -21,7 +21,8 @@ class _StartScreenState extends State<StartScreen>
       decoration: BoxDecoration(
         image: DecorationImage(
           image: livingRoom,
-      )),
+        )
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

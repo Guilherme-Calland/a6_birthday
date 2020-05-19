@@ -1,3 +1,4 @@
+import 'package:a6_birthday/components/components.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -8,9 +9,12 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Menu')
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage
+        (
+          image: gameMenu,
+        )
       )
     );
   }

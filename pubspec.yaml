@@ -46,14 +46,18 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/livingRoom.png
-    - images/rute.right.png
-    - images/rute.left.png
-    - images/rute.right.legUp1.png
-    - images/rute.left.legUp1.png
-    - images/rute.right.legUp2.png
-    - images/rute.left.legUp2.png
-    - images/rute.left.openDoor.png
+    - images/scenario/livingRoom.png
+    - images/rute/x3/rute.right.png
+    - images/rute/x2/rute.right.png
+    - images/rute/x1/rute.right.png
+    - images/rute/x3/rute.left.png
+    - images/rute/x3/rute.right.legUp1.png
+    - images/rute/x3/rute.left.legUp1.png
+    - images/rute/x3/rute.right.legUp2.png
+    - images/rute/x3/rute.left.legUp2.png
+    - images/rute/x3/rute.left.openDoor.png
+    - images/scenario/menu4.png
+    - images/scenario/ruaJacobina.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
