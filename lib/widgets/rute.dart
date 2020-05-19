@@ -15,6 +15,7 @@ class Rute extends StatelessWidget {
   var ruteLeftLegUp1 = Image.asset('images/rute/$folder/rute.left.legUp1.png');
   var ruteLeftLegUp2 = Image.asset('images/rute/$folder/rute.left.legUp2.png');
   var ruteLeftOpenDoor = Image.asset('images/rute/$folder/rute.left.openDoor.png');
+  var arrowOneImage = Image.asset('images/scenario/level.one.arrow.png');
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,8 @@ class Rute extends StatelessWidget {
       image = ruteLeftLegUp2;
     } else if(state == ImageState.openDoor){
       image = ruteLeftOpenDoor;
+    } else if(state == ImageState.arrowOne){
+      image = arrowOneImage;
     }
 
     return Transform.translate(

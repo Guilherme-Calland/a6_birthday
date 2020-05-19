@@ -9,7 +9,7 @@ enum Direction
 
 enum ImageState
 {
-  stillLeft, stillRight, legUp1Left, legUp2Left, legUp1Right, legUp2Right, openDoor
+  stillLeft, stillRight, legUp1Left, legUp2Left, legUp1Right, legUp2Right, openDoor, arrowOne
 }
 
 AnimationController 

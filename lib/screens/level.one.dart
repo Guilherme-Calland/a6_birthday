@@ -197,7 +197,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     Tween<double>(begin: 700, end: 0).animate(loadingLvl1AnimationController)
     ..addListener(() {
       if(loadingLvl1Animation.value > 600){
-          state = ImageState.legUp1Left;
+          state = ImageState.arrowOne;
         } else if(loadingLvl1Animation.value > 500){
           state = ImageState.legUp1Left;
         } else if(loadingLvl1Animation.value > 400){
@@ -226,22 +226,26 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     state = ImageState.stillRight;
     Rute.folder = 'x2';
     startLoading();
+    startArrow();
+    levelOneArrowAnimationController.forward();
+    
+  }
+
+  void startArrow() {
     loadingLvl1AnimationController.forward();
     levelOneArrowAnimationController = AnimationController(
-      duration: Duration(seconds: 6), vsync: this);
+      duration: Duration(seconds: 8), vsync: this);
     levelOneArrowAnimation =
     Tween<double>(begin: 0, end: 400).animate(levelOneArrowAnimationController)
     ..addListener(() {
       if(levelOneArrowAnimation.value >= 100){
         showLevelOneArrow = true;
       }
-
-      if(levelOneArrowAnimation.value >= 200){
+    
+      if(levelOneArrowAnimation.value >= 300){
         removeLevelOneArrow = true;
       }
     setState(() {});});
-    levelOneArrowAnimationController.forward();
-    
   }
 
   @override
