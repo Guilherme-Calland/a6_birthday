@@ -2,6 +2,7 @@ import 'package:a6_birthday/components/components.dart';
 import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 
 class LevelOne extends StatefulWidget {
   @override
@@ -26,7 +27,13 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
       ),
       child: Column(
         children: <Widget>[
-          SizedBox(height: 210,),
+          SizedBox(height: 20,),
+          showLevelOneArrow ? 
+            removeLevelOneArrow ?
+              SlideOutRight(child: levelOneArrow) : SlideInLeft(child: levelOneArrow) 
+          :
+          SizedBox( height: 198,)
+          ,
           !loadingLevelOneScreen ?
           Rute(
             xOffset: xPos,
@@ -38,7 +45,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
             yOffset: -500,
             state: state
           ),
-          SizedBox(height : 30),
+          SizedBox(height : 10),
           !loadingLevelOneScreen ? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -220,6 +227,20 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     Rute.folder = 'x2';
     startLoading();
     loadingLvl1AnimationController.forward();
+    levelOneArrowAnimationController = AnimationController(
+      duration: Duration(seconds: 6), vsync: this);
+    levelOneArrowAnimation =
+    Tween<double>(begin: 0, end: 400).animate(levelOneArrowAnimationController)
+    ..addListener(() {
+      if(levelOneArrowAnimation.value >= 100){
+        showLevelOneArrow = true;
+      }
+
+      if(levelOneArrowAnimation.value >= 200){
+        removeLevelOneArrow = true;
+      }
+    setState(() {});});
+    levelOneArrowAnimationController.forward();
     
   }
 
