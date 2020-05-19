@@ -27,12 +27,19 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
       child: Column(
         children: <Widget>[
           SizedBox(height: 210,),
+          !loadingLevelOneScreen ?
           Rute(
             xOffset: xPos,
             yOffset: yPos,
             state : state
+          ) : 
+          Rute(
+            xOffset: -500,
+            yOffset: -500,
+            state: state
           ),
           SizedBox(height : 30),
+          !loadingLevelOneScreen ? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -58,7 +65,10 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
                 },
               ),
             ],
-          ),
+          )
+          :
+          SizedBox(),
+          !loadingLevelOneScreen? 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -71,6 +81,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
               )
             ],
           )
+          : SizedBox()
         ]
       )
     );
@@ -172,6 +183,33 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     );
   }
 
+  void startLoading() {
+    loadingLvl1AnimationController = AnimationController(
+      duration: Duration(milliseconds: 500), vsync: this, value: 0.00);
+    loadingLvl1Animation =
+    Tween<double>(begin: 700, end: 0).animate(loadingLvl1AnimationController)
+    ..addListener(() {
+      if(loadingLvl1Animation.value > 600){
+          state = ImageState.legUp1Left;
+        } else if(loadingLvl1Animation.value > 500){
+          state = ImageState.legUp1Left;
+        } else if(loadingLvl1Animation.value > 400){
+          state = ImageState.legUp2Left;
+        } else if (loadingLvl1Animation.value > 300){
+          state = ImageState.stillLeft;
+        } else if(loadingLvl1Animation.value > 200){
+          state = ImageState.legUp1Right;
+        } else if(loadingLvl1Animation.value > 100){
+          state = ImageState.legUp2Right;
+        } else {
+          state = ImageState.stillRight;
+        }
+        if(loadingLvl1Animation.isCompleted){
+          loadingLevelOneScreen = false;
+        }
+    setState(() {});});
+  }
+
   @override
   void initState(){
     super.initState();
@@ -180,7 +218,9 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     startJumping();
     state = ImageState.stillRight;
     Rute.folder = 'x2';
-    yPos = 0;
+    startLoading();
+    loadingLvl1AnimationController.forward();
+    
   }
 
   @override

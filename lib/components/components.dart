@@ -17,20 +17,23 @@ AnimationController
   legsAnimationController,
   openDoorAnimationController,
   changeScreenDelayAnimationController,
-  loadingAnimationController;
+  loadingAnimationController,
+  loadingLvl1AnimationController;
 Animation 
   moveAnimation, 
   jumpAnimation, 
   legsAnimation,
   openDoorAnimation,
   changeScreenDelayAnimation,
-  loadingAnimation;
+  loadingAnimation,
+  loadingLvl1Animation;
 double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
 Direction direction = Direction.right;
 ImageState state = ImageState.stillRight;
 bool showOpenDoorButton = false;
 bool openingDoorSequence = false;
 bool loadingStartScreen = true;
+bool loadingLevelOneScreen = true;
 
 var livingRoom = AssetImage('images/scenario/livingRoom.png');
 var gameMenu = AssetImage('images/scenario/menu4.png');

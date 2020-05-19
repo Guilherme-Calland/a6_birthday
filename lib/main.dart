@@ -23,7 +23,7 @@ class BirthDay extends StatelessWidget {
         primarySwatch: Colors.red,
         secondaryHeaderColor: Colors.red
       ),
-      initialRoute: 'start.screen',
+      initialRoute: 'level.one',
       routes: {
         'menu.screen' : (context) => MenuScreen(),
         'start.screen' : (context) => StartScreen(),
