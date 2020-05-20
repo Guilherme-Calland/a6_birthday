@@ -2,6 +2,7 @@ import 'package:a6_birthday/components/components.dart';
 import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 
 class LevelTwo extends StatefulWidget {
   @override
@@ -31,7 +32,14 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
       ),
       child: Column(
         children: <Widget>[
-          SizedBox(height: 210,),
+          SizedBox(height: 10,),
+          showLevelTwoArrow ? 
+            removeLevelTwoArrow ?
+              SlideOutRight(child: levelTwoArrow) : SlideInLeft(child: levelTwoArrow) 
+          :
+          SizedBox( height: 198,)
+          ,
+          // SizedBox(height: 210,),
           !loadingLevelTwoScreen? 
           Rute(
             xOffset: xPos,
@@ -112,17 +120,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     direction = Direction.left;
   }
 
-  @override
-  initState(){
-    super.initState();
-    Rute.folder = 'x2';
-    yPos = 0;
-    startLoading();
-    loadingLvl2AnimationController.forward();
-    startMoving();
-    startLegs();
-  }
-
   void startLoading() {
     loadingLvl2AnimationController = AnimationController(
       duration: Duration(seconds: 2), vsync: this, value: 0.00);
@@ -138,7 +135,7 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
       }else if(loadingLvl2Animation.value > 900){
         state = ImageState.leftRunning1;
       }else if(loadingLvl2Animation.value > 800){
-        // state = ImageState.arrowOne;
+        state = ImageState.arrowTwo;
       } else if(loadingLvl2Animation.value > 700){
         state = ImageState.leftSwimming;
       } else if(loadingLvl2Animation.value > 600){
@@ -170,6 +167,8 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     ..addListener(() {
       if(moveAnimation.isCompleted){
         Navigator.popAndPushNamed(context, 'level.three');
+        moveAnimationController.stop();
+        legsAnimationController.stop();
       }
     setState(() {});});
   }
@@ -207,5 +206,42 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
           state = ImageState.rightSwimming2
         );
     setState(() {});});
+  }
+
+  void startArrow() {
+    levelTwoArrowAnimationController = AnimationController(
+      duration: Duration(seconds: 5), vsync: this);
+    levelTwoArrowAnimation =
+    Tween<double>(begin: 0, end: 400).animate(levelTwoArrowAnimationController)
+    ..addListener(() {
+      if(levelTwoArrowAnimation.value >= 200){
+        showLevelTwoArrow = true;
+      }
+    
+      if(levelTwoArrowAnimation.isCompleted){
+        removeLevelTwoArrow = true;
+      }
+    setState(() {});});
+  }
+
+  @override
+  initState(){
+    super.initState();
+    Rute.folder = 'x2';
+    yPos = 0;
+    startLoading();
+    loadingLvl2AnimationController.forward();
+    startMoving();
+    startLegs();
+    startArrow();
+    levelTwoArrowAnimationController.forward();
+
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    loadingLvl2AnimationController.dispose();
   }
 }

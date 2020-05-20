@@ -24,6 +24,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
 
     xPos = moveAnimation.value;
     yPos = -s;
+    
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage

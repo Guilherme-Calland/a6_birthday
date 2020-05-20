@@ -31,7 +31,7 @@ class BirthDay extends StatelessWidget {
         'start.screen' : (context) => StartScreen(),
         'level.one' : (context) => LevelOne(),
         'level.two' : (context) => LevelTwo(),
-        'levelThree' : (context) => LevelThree()
+        'level.three' : (context) => LevelThree()
       }
     );
   }
