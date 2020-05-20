@@ -23,17 +23,18 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
       child: Column(
         children: <Widget>[
           SizedBox(height: 210,),
-          loadingLevelTwoScreen? 
+          !loadingLevelTwoScreen? 
           Rute(
-            xOffset: 0,
-            yOffset: -400,
+            xOffset: xPos,
+            yOffset: yPos,
             state : state,
           )
           :
           Rute(
             xOffset: xPos,
-            yOffset: yPos,
-          )
+            yOffset: -400,
+          ),
+          
         ],
       ),
     );
@@ -53,23 +54,31 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     loadingLvl2AnimationController = AnimationController(
       duration: Duration(seconds: 2), vsync: this, value: 0.00);
     loadingLvl2Animation =
-    Tween<double>(begin: 1200, end: 0).animate(loadingLvl2AnimationController)
+    Tween<double>(begin: 1300, end: 0).animate(loadingLvl2AnimationController)
     ..addListener(() {
-      if(loadingLvl2Animation.value > 1000){
+      if(loadingLvl2Animation.value > 1200){
         state = ImageState.rightRunning2;
-      }else if(loadingLvl2Animation.value > 900){
+      }else if(loadingLvl2Animation.value > 1100){
         state = ImageState.rightRunning1;
-      }else if(loadingLvl2Animation.value > 800){
+      }else if(loadingLvl2Animation.value > 1000){
         state = ImageState.leftRunning2;
-      }else if(loadingLvl2Animation.value > 700){
+      }else if(loadingLvl2Animation.value > 900){
         state = ImageState.leftRunning1;
-      }else if(loadingLvl2Animation.value > 600){
+      }else if(loadingLvl2Animation.value > 800){
         // state = ImageState.arrowOne;
+      } else if(loadingLvl2Animation.value > 700){
+        state = ImageState.leftSwimming;
+      } else if(loadingLvl2Animation.value > 600){
+        state = ImageState.leftSwimming1;
       } else if(loadingLvl2Animation.value > 500){
-        // state = ImageState.legUp1Left;
+        state = ImageState.leftSwimming2;
       } else if(loadingLvl2Animation.value > 400){
-        // state = ImageState.legUp2Left;
-      } else if (loadingLvl2Animation.value > 300){
+        state = ImageState.rightSwimming;
+      } else if(loadingLvl2Animation.value > 300){
+        state = ImageState.rightSwimming1;
+      } else if(loadingLvl2Animation.value > 200){
+        state = ImageState.rightSwimming2;
+      } else if (loadingLvl2Animation.value > 100){
         state = ImageState.stillLeft;
       } else {
         state = ImageState.stillRight;

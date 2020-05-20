@@ -69,7 +69,13 @@ flutter:
     - images/rute/x2/rute.left.running1.png
     - images/rute/x2/rute.left.running2.png
     - images/rute/x2/rute.right.running1.png
-    - images/rute/x2/rute.right.running2.png
+    - images/rute/x2/rute.swimming.left.png
+    - images/rute/x2/rute.swimming.left1.png
+    - images/rute/x2/rute.swimming.left2.png
+    - images/rute/x2/rute.swimming.right.png
+    - images/rute/x2/rute.swimming.right1.png
+    - images/rute/x2/rute.swimming.right2.png
+
     
   
 

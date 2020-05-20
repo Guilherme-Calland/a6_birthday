@@ -20,6 +20,12 @@ class Rute extends StatelessWidget {
   var ruteLeftRunning2 = Image.asset('images/rute/$folder/rute.left.running2.png');
   var ruteRightRunning1 = Image.asset('images/rute/$folder/rute.right.running1.png');
   var ruteRightRunning2 = Image.asset('images/rute/$folder/rute.right.running2.png');
+  var ruteRightSwimming = Image.asset('images/rute/$folder/rute.swimming.right.png');
+  var ruteRightSwimming1 = Image.asset('images/rute/$folder/rute.swimming.right1.png');
+  var ruteRightSwimming2 = Image.asset('images/rute/$folder/rute.swimming.right2.png');
+  var ruteLeftSwimming = Image.asset('images/rute/$folder/rute.swimming.left.png');
+  var ruteLeftSwimming1 = Image.asset('images/rute/$folder/rute.swimming.left1.png');
+  var ruteLeftSwimming2 = Image.asset('images/rute/$folder/rute.swimming.left2.png');
 
 
   @override
@@ -41,14 +47,18 @@ class Rute extends StatelessWidget {
       image = ruteLeftOpenDoor;
     } else if(state == ImageState.arrowOne){
       image = arrowOneImage;
-    } else if (state == ImageState.leftRunning1){
-      image = ruteLeftRunning1;
-    } else if (state == ImageState.leftRunning2){
-      image = ruteLeftRunning2;
-    } else if (state == ImageState.rightRunning1){
-      image = ruteRightRunning1;
-    } else if (state == ImageState.rightRunning2){
-      image = ruteRightRunning2;
+    } else if (state == ImageState.leftSwimming){
+      image = ruteLeftSwimming;
+    } else if (state == ImageState.leftSwimming1){
+      image = ruteLeftSwimming1;
+    } else if (state == ImageState.leftSwimming2){
+      image = ruteLeftSwimming2;
+    } else if (state == ImageState.rightSwimming){
+      image = ruteRightSwimming;
+    } else if (state == ImageState.rightSwimming1){
+      image = ruteRightSwimming1;
+    } else if (state == ImageState.rightSwimming2){
+      image = ruteRightSwimming2;
     }
 
     return Transform.translate(
