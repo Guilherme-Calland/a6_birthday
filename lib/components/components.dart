@@ -44,6 +44,7 @@ bool running = false;
 var livingRoom = AssetImage('images/scenario/livingRoom.png');
 var gameMenu = AssetImage('images/scenario/menu4.png');
 var ruaJacobina = AssetImage('images/scenario/ruaJacobina.png');
+var levelTwo = AssetImage('images/scenario/levelTwo.png');
 var levelOneArrow = Image.asset('images/scenario/level.one.arrow.png');
 
 final GlobalKey<AnimatorWidgetState> levelOneSlideInKey =
