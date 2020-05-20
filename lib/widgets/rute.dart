@@ -59,7 +59,16 @@ class Rute extends StatelessWidget {
       image = ruteRightSwimming1;
     } else if (state == ImageState.rightSwimming2){
       image = ruteRightSwimming2;
+    } else if (state == ImageState.rightRunning1){
+      image = ruteRightRunning1;
+    } else if (state == ImageState.rightRunning2){
+      image = ruteRightRunning2;
+    } else if (state == ImageState.leftRunning1){
+      image = ruteLeftRunning1;
+    } else if (state == ImageState.leftRunning2){
+      image = ruteLeftRunning2;
     }
+
 
     return Transform.translate(
       //inicial posiction

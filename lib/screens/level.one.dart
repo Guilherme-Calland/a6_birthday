@@ -47,10 +47,13 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
             state : state
           ) 
           :
-          Rute(
-            xOffset: xPos,
-            yOffset: -400,
-            state: state
+          Container(
+            height: 52,
+            child: Rute(
+              xOffset: xPos,
+              yOffset: 200,
+              state: state
+            ),
           ),
           SizedBox(height : 10),
           !loadingLevelOneScreen ? 

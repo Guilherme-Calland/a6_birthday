@@ -1,4 +1,5 @@
 import 'package:a6_birthday/components/components.dart';
+import 'package:a6_birthday/widgets/birthday.button.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
 
@@ -30,14 +31,63 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
             state : state,
           )
           :
-          Rute(
-            xOffset: xPos,
-            yOffset: -400,
+          Container(
+            height: 52,
+            child: Rute(
+              xOffset: xPos,
+              yOffset: -400,
+              state: state,
+            ),
           ),
-          
+          SizedBox(height: 65,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BirthdayButton(
+                title: 'Esquer',
+                color: Colors.green,
+                onPressed: (){
+                  goLeft();
+                },
+              ),
+              BirthdayButton(
+                title: 'Parar',
+                color: Colors.red,
+                onPressed: (){
+                  stop();
+                },
+              ),
+              BirthdayButton(
+                title: 'Direita',
+                color: Colors.green,
+                onPressed: (){
+                  goRight();
+                },
+              ),
+            ],
+          )
         ],
       ),
     );
+  }
+
+  void goRight() {
+    moveAnimationController.forward();
+    direction = Direction.right;
+  }
+
+  void stop() {
+    moveAnimationController.stop();
+    setState(() {
+      direction  == Direction.left ? 
+      state = ImageState.stillLeft :
+      state = ImageState.stillRight;
+    });
+  }
+
+  void goLeft() {
+    moveAnimationController.reverse();
+    direction = Direction.left;
   }
 
   @override
