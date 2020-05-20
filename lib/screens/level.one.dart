@@ -166,6 +166,8 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     Tween<double>(begin: -392, end: 440).animate(moveAnimationController)
     ..addListener(() {
       if(moveAnimation.isCompleted){
+        moveAnimationController.stop();
+        legsAnimationController.stop();
         Navigator.popAndPushNamed(context, 'level.two');
       }
     setState(() {});});
@@ -315,6 +317,9 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   @override
   void dispose(){
     super.dispose();
+    loadingAnimationController.dispose();
+    loadingLvl1AnimationController.dispose();
+    levelOneArrowAnimationController.dispose();
 
   }
 }

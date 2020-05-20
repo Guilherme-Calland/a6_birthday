@@ -14,8 +14,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
 
     xPos = moveAnimation.value;
 
-    print(xPos);
-
     if(xPos > -120){
       swimming = true;
       yPos = 30;
