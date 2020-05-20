@@ -287,7 +287,7 @@ class _StartScreenState extends State<StartScreen>
   void dispose() {
     openDoorAnimationController.dispose();
     changeScreenDelayAnimationController.dispose();
-    loadingAnimationController.dispose();
+    // loadingAnimationController.dispose();
     super.dispose();
   }
 }

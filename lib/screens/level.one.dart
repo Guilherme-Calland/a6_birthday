@@ -49,7 +49,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
           :
           Rute(
             xOffset: xPos,
-            yOffset: 200,
+            yOffset: -400,
             state: state
           ),
           SizedBox(height : 10),

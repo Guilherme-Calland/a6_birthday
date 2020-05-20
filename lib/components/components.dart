@@ -20,7 +20,8 @@ AnimationController
   changeScreenDelayAnimationController,
   loadingAnimationController,
   loadingLvl1AnimationController,
-  levelOneArrowAnimationController;
+  levelOneArrowAnimationController,
+  loadingLvl2AnimationController;
 Animation 
   moveAnimation, 
   jumpAnimation, 
@@ -29,7 +30,8 @@ Animation
   changeScreenDelayAnimation,
   loadingAnimation,
   loadingLvl1Animation,
-  levelOneArrowAnimation;
+  levelOneArrowAnimation,
+  loadingLvl2Animation;
 double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
 Direction direction = Direction.right;
 ImageState state = ImageState.stillRight;
@@ -37,6 +39,7 @@ bool showOpenDoorButton = false;
 bool openingDoorSequence = false;
 bool loadingStartScreen = true;
 bool loadingLevelOneScreen = true;
+bool loadingLevelTwoScreen = true;
 bool showLevelOneArrow = false;
 bool removeLevelOneArrow = false;
 bool running = false;
