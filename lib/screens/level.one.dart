@@ -16,15 +16,11 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
 
-    print(xPos);
-    print(running);
     if(xPos > -28){
       running = true;
     } else {
       running = false;
     }
-
-
 
     xPos = moveAnimation.value;
     yPos = -s;
@@ -162,10 +158,13 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
 
   void startMoving() {
     moveAnimationController = AnimationController(
-      duration: Duration(seconds: 12), vsync: this, value: 0.05);
+      duration: Duration(seconds: 6), vsync: this, value: 0.05);
     moveAnimation =
     Tween<double>(begin: -392, end: 440).animate(moveAnimationController)
     ..addListener(() {
+      if(moveAnimation.isCompleted){
+        Navigator.popAndPushNamed(context, 'level.two');
+      }
     setState(() {});});
   }
 
@@ -250,14 +249,11 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     ..addListener(() {
       if(loadingLvl1Animation.value > 1000){
         state = ImageState.rightRunning2;
-      }
-      else if(loadingLvl1Animation.value > 900){
+      }else if(loadingLvl1Animation.value > 900){
         state = ImageState.rightRunning1;
-      }
-      else if(loadingLvl1Animation.value > 800){
+      }else if(loadingLvl1Animation.value > 800){
         state = ImageState.leftRunning2;
-      }
-      else if(loadingLvl1Animation.value > 700){
+      }else if(loadingLvl1Animation.value > 700){
         state = ImageState.leftRunning1;
       }else if(loadingLvl1Animation.value > 600){
         state = ImageState.arrowOne;

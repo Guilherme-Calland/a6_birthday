@@ -1,4 +1,6 @@
 import 'package:a6_birthday/screens/level.one.dart';
+import 'package:a6_birthday/screens/level.three.dart';
+import 'package:a6_birthday/screens/level.two.dart';
 import 'package:a6_birthday/screens/menu.screen.dart';
 import 'package:a6_birthday/screens/start.screen.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,8 @@ class BirthDay extends StatelessWidget {
         'menu.screen' : (context) => MenuScreen(),
         'start.screen' : (context) => StartScreen(),
         'level.one' : (context) => LevelOne(),
+        'level.two' : (context) => LevelTwo(),
+        'levelThree' : (context) => LevelThree()
       }
     );
   }
