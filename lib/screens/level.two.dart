@@ -14,6 +14,16 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
 
     xPos = moveAnimation.value;
 
+    print(xPos);
+
+    if(xPos > -120){
+      swimming = true;
+      yPos = 30;
+    } else {
+      swimming = false;
+      yPos = 0;
+    }
+
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage
@@ -40,6 +50,7 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
             ),
           ),
           SizedBox(height: 65,),
+          !loadingLevelTwoScreen?
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -66,6 +77,7 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
               ),
             ],
           )
+          : SizedBox()
         ],
       ),
     );
@@ -73,20 +85,32 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
 
   void goRight() {
     moveAnimationController.forward();
+    legsAnimationController.repeat();
     direction = Direction.right;
   }
 
   void stop() {
     moveAnimationController.stop();
+    legsAnimationController.stop();
     setState(() {
       direction  == Direction.left ? 
-      state = ImageState.stillLeft :
-      state = ImageState.stillRight;
+        swimming ?
+          state = ImageState.leftSwimming 
+        :
+          state = ImageState.stillLeft
+      :
+        swimming ?
+          state = ImageState.rightSwimming
+        :
+          state = ImageState.stillRight;
+
+
     });
   }
 
   void goLeft() {
     moveAnimationController.reverse();
+    legsAnimationController.repeat();
     direction = Direction.left;
   }
 
@@ -98,6 +122,7 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     startLoading();
     loadingLvl2AnimationController.forward();
     startMoving();
+    startLegs();
   }
 
   void startLoading() {
@@ -148,6 +173,41 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
       if(moveAnimation.isCompleted){
         Navigator.popAndPushNamed(context, 'level.three');
       }
+    setState(() {});});
+  }
+
+  void startLegs() {
+    legsAnimationController = AnimationController(
+      duration: Duration(milliseconds: 250), vsync: this);
+    legsAnimation =
+    Tween<double>(begin: 1, end: 200).animate(legsAnimationController)
+    ..addListener(() {
+      !swimming ?
+        direction == Direction.left ?
+        (
+          legsAnimation.value >= 100 ?  
+          state = ImageState.leftRunning1 :
+          state = ImageState.leftRunning2
+        )
+        :
+        (
+          legsAnimation.value >= 100 ?
+          state = ImageState.rightRunning1 :
+          state = ImageState.rightRunning2
+        )
+      :
+        direction == Direction.left ?
+        (
+          legsAnimation.value >= 100 ?  
+          state = ImageState.leftSwimming1 :
+          state = ImageState.leftSwimming2 
+        )
+        :
+        (
+          legsAnimation.value >= 100 ?
+          state = ImageState.rightSwimming1 :
+          state = ImageState.rightSwimming2
+        );
     setState(() {});});
   }
 }
