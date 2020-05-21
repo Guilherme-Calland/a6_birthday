@@ -32,6 +32,12 @@ class Rute extends StatelessWidget {
   var ruteRightBiking1 = Image.asset('images/rute/$folder/rute.right.biking1.png', gaplessPlayback: true,);
   var ruteLeftBiking = Image.asset('images/rute/$folder/rute.biking.left.png', gaplessPlayback: true,);
   var ruteLeftBiking1 = Image.asset('images/rute/$folder/rute.left.biking1.png', gaplessPlayback: true,);
+  var ruteLeftSmiling = Image.asset('images/rute/$folder/rute.left.smiling.png', gaplessPlayback: true,);
+  var ruteLeftSmiling1 = Image.asset('images/rute/$folder/rute.left.legUp1.smiling.png', gaplessPlayback: true,);
+  var ruteLeftSmiling2 = Image.asset('images/rute/$folder/rute.left.legUp2.smiling.png', gaplessPlayback: true,);
+  var ruteRightSmiling1 = Image.asset('images/rute/$folder/rute.right.legUp1.smiling.png', gaplessPlayback: true,);
+  var ruteRightSmiling2 = Image.asset('images/rute/$folder/rute.right.legUp2.smiling.png', gaplessPlayback: true,);
+  var ruteRightSmiling = Image.asset('images/rute/$folder/rute.right.smiling.png', gaplessPlayback: true,);
 
 
   @override
@@ -93,6 +99,18 @@ class Rute extends StatelessWidget {
       image = ruteRightBiking1;
     } else if (state == ImageState.arrowThree){
       image = arrowThreeImage;
+    } else if (state == ImageState.leftSmiling){
+      image = ruteLeftSmiling;
+    } else if (state == ImageState.leftSmiling1){
+      image = ruteLeftSmiling1;
+    } else if (state == ImageState.leftSmiling2){
+      image = ruteLeftSmiling2;
+    } else if (state == ImageState.rightSmiling){
+      image = ruteRightSmiling;
+    } else if (state == ImageState.rightSmiling1){
+      image = ruteRightSmiling1;
+    } else if (state == ImageState.rightSmiling2){
+      image = ruteRightSmiling2;
     }
 
 

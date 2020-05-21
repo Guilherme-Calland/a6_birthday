@@ -16,7 +16,9 @@ enum ImageState
   rightSwimming, rightSwimming1, rightSwimming2,
   leftSwimming, leftSwimming1, leftSwimming2,
   rightBiking, rightBiking1,
-  leftBiking, leftBiking1
+  leftBiking, leftBiking1,
+  rightSmiling, rightSmiling1, rightSmiling2,
+  leftSmiling, leftSmiling1, leftSmiling2
 }
 
 AnimationController 
@@ -69,9 +71,11 @@ var gameMenu = AssetImage('images/scenario/menu4.png');
 var ruaJacobina = AssetImage('images/scenario/ruaJacobina.png');
 var levelTwo = AssetImage('images/scenario/levelTwo.png');
 var levelThree = AssetImage('images/scenario/levelThree.png');
+var levelFour = AssetImage('images/scenario/levelFour.png');
 var levelOneArrow = Image.asset('images/scenario/level.one.arrow.png', gaplessPlayback:  true);
 var levelTwoArrow = Image.asset('images/scenario/level.two.arrow.png', gaplessPlayback:  true);
 var levelThreeArrow = Image.asset('images/scenario/level.three.arrow.png', gaplessPlayback:  true);
+var family = Image.asset('images/familia/familia.png', gaplessPlayback: true,);
 var bike = Image.asset('images/rute/x2/bike.png', gaplessPlayback: true,);
 
 final GlobalKey<AnimatorWidgetState> levelOneSlideInKey =

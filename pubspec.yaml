@@ -48,7 +48,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/scenario/livingRoom.png
     - images/rute/x3/rute.right.png
     - images/rute/x2/rute.right.png
     - images/rute/x3/rute.left.png
@@ -63,10 +62,12 @@ flutter:
     - images/rute/x2/rute.left.legUp2.png
     - images/rute/x3/rute.left.openDoor.png
     - images/scenario/menu4.png
+    - images/scenario/livingRoom.png
     - images/scenario/ruaJacobina.png
     - images/scenario/level.one.arrow.png
     - images/scenario/levelTwo.png
     - images/scenario/levelThree.png
+    - images/scenario/levelFour.png
     - images/rute/x2/rute.left.running1.png
     - images/rute/x2/rute.left.running2.png
     - images/rute/x2/rute.right.running1.png
@@ -84,6 +85,13 @@ flutter:
     - images/rute/x2/rute.biking.left.png
     - images/rute/x2/rute.left.biking1.png
     - images/rute/x2/bike.png
+    - images/familia/familia.png
+    - images/rute/x2/rute.right.smiling.png
+    - images/rute/x2/rute.right.legUp1.smiling.png
+    - images/rute/x2/rute.right.legUp2.smiling.png
+    - images/rute/x2/rute.left.smiling.png
+    - images/rute/x2/rute.left.legUp1.smiling.png
+    - images/rute/x2/rute.left.legUp2.smiling.png
 
     
   

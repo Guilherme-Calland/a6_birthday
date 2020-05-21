@@ -122,9 +122,9 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
     Tween<double>(begin: -392, end: 440).animate(moveAnimationController)
     ..addListener(() {
       if(moveAnimation.isCompleted){
-        Navigator.popAndPushNamed(context, 'level.three');
         moveAnimationController.stop();
         legsAnimationController.stop();
+        Navigator.popAndPushNamed(context, 'level.four');
       }
     setState(() {});});
   }
@@ -196,8 +196,6 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
   void dispose() {
     // TODO: implement dispose
     levelThreeArrowAnimationController.dispose();
-    moveAnimationController.stop();
-    legsAnimationController.stop();
     super.dispose();
   }
 }
