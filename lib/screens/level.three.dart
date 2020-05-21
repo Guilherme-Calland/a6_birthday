@@ -64,13 +64,11 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
               state: state,
             ),
           ),
-          !biking? SizedBox(height: 28,) : SizedBox(),
+          !biking? SizedBox(height: 0,) : SizedBox( height: 35,),
           !loadingLevelThreeScreen?
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-             
-              SizedBox(width: 150,),
               BirthdayButton(
                 title: 'Esquer',
                 color: Colors.green,
