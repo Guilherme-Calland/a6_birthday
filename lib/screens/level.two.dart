@@ -243,5 +243,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     // TODO: implement dispose
     super.dispose();
     loadingLvl2AnimationController.dispose();
+    levelTwoArrowAnimationController.dispose();
   }
 }

@@ -11,11 +11,12 @@ enum ImageState
 {
   stillLeft, stillRight, 
   legUp1Left, legUp2Left, legUp1Right, legUp2Right, 
-  openDoor, arrowOne, arrowTwo,
+  openDoor, arrowOne, arrowTwo, arrowThree,
   leftRunning1, leftRunning2, rightRunning1, rightRunning2,
   rightSwimming, rightSwimming1, rightSwimming2,
-  leftSwimming, leftSwimming1, leftSwimming2
-
+  leftSwimming, leftSwimming1, leftSwimming2,
+  rightBiking, rightBiking1,
+  leftBiking, leftBiking1
 }
 
 AnimationController 
@@ -25,10 +26,12 @@ AnimationController
   openDoorAnimationController,
   changeScreenDelayAnimationController,
   loadingAnimationController,
-  loadingLvl1AnimationController,
   levelOneArrowAnimationController,
   levelTwoArrowAnimationController,
-  loadingLvl2AnimationController;
+  levelThreeArrowAnimationController,
+  loadingLvl1AnimationController,
+  loadingLvl2AnimationController,
+  loadingLvl3AnimationController;
 Animation 
   moveAnimation, 
   jumpAnimation, 
@@ -36,10 +39,12 @@ Animation
   openDoorAnimation,
   changeScreenDelayAnimation,
   loadingAnimation,
-  loadingLvl1Animation,
   levelOneArrowAnimation,
   levelTwoArrowAnimation,
-  loadingLvl2Animation;
+  levelThreeArrowAnimation,
+  loadingLvl1Animation,
+  loadingLvl2Animation,
+  loadingLvl3Animation;
 double xPos = 0, yPos = 0, t = 0, s = 0, v = 0;
 Direction direction = Direction.right;
 ImageState state = ImageState.stillRight;
@@ -48,19 +53,26 @@ bool openingDoorSequence = false;
 bool loadingStartScreen = true;
 bool loadingLevelOneScreen = true;
 bool loadingLevelTwoScreen = true;
+bool loadingLevelThreeScreen = true;
 bool showLevelOneArrow = false;
 bool showLevelTwoArrow = false;
+bool showLevelThreeArrow = false;
+bool removeLevelThreeArrow = false;
 bool removeLevelOneArrow = false;
 bool removeLevelTwoArrow = false;
 bool running = false;
 bool swimming = false;
+bool biking = false;
 
 var livingRoom = AssetImage('images/scenario/livingRoom.png');
 var gameMenu = AssetImage('images/scenario/menu4.png');
 var ruaJacobina = AssetImage('images/scenario/ruaJacobina.png');
 var levelTwo = AssetImage('images/scenario/levelTwo.png');
+var levelThree = AssetImage('images/scenario/levelThree.png');
 var levelOneArrow = Image.asset('images/scenario/level.one.arrow.png');
 var levelTwoArrow = Image.asset('images/scenario/level.two.arrow.png');
+var levelThreeArrow = Image.asset('images/scenario/level.three.arrow.png');
+var bike = Image.asset('images/rute/x2/bike.png');
 
 final GlobalKey<AnimatorWidgetState> levelOneSlideInKey =
 GlobalKey<AnimatorWidgetState>();

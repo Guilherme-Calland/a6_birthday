@@ -66,6 +66,7 @@ flutter:
     - images/scenario/ruaJacobina.png
     - images/scenario/level.one.arrow.png
     - images/scenario/levelTwo.png
+    - images/scenario/levelThree.png
     - images/rute/x2/rute.left.running1.png
     - images/rute/x2/rute.left.running2.png
     - images/rute/x2/rute.right.running1.png
@@ -77,6 +78,12 @@ flutter:
     - images/rute/x2/rute.swimming.right1.png
     - images/rute/x2/rute.swimming.right2.png
     - images/scenario/level.two.arrow.png
+    - images/scenario/level.three.arrow.png
+    - images/rute/x2/rute.biking.right.png
+    - images/rute/x2/rute.right.biking1.png
+    - images/rute/x2/rute.biking.left.png
+    - images/rute/x2/rute.left.biking1.png
+    - images/rute/x2/bike.png
 
     
   

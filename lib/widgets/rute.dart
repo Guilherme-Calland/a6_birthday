@@ -17,6 +17,7 @@ class Rute extends StatelessWidget {
   var ruteLeftOpenDoor = Image.asset('images/rute/$folder/rute.left.openDoor.png');
   var arrowOneImage = Image.asset('images/scenario/level.one.arrow.png');
   var arrowTwoImage = Image.asset('images/scenario/level.two.arrow.png');
+  var arrowThreeImage = Image.asset('images/scenario/level.three.arrow.png');
   var ruteLeftRunning1 = Image.asset('images/rute/$folder/rute.left.running1.png');
   var ruteLeftRunning2 = Image.asset('images/rute/$folder/rute.left.running2.png');
   var ruteRightRunning1 = Image.asset('images/rute/$folder/rute.right.running1.png');
@@ -27,6 +28,10 @@ class Rute extends StatelessWidget {
   var ruteLeftSwimming = Image.asset('images/rute/$folder/rute.swimming.left.png');
   var ruteLeftSwimming1 = Image.asset('images/rute/$folder/rute.swimming.left1.png');
   var ruteLeftSwimming2 = Image.asset('images/rute/$folder/rute.swimming.left2.png');
+  var ruteRightBiking = Image.asset('images/rute/$folder/rute.biking.right.png');
+  var ruteRightBiking1 = Image.asset('images/rute/$folder/rute.right.biking1.png');
+  var ruteLeftBiking = Image.asset('images/rute/$folder/rute.biking.left.png');
+  var ruteLeftBiking1 = Image.asset('images/rute/$folder/rute.left.biking1.png');
 
 
   @override
@@ -70,6 +75,24 @@ class Rute extends StatelessWidget {
       image = ruteLeftRunning2;
     } else if (state == ImageState.arrowTwo){
       image = arrowTwoImage;
+    } else if (state == ImageState.arrowThree){
+      image = arrowThreeImage;
+    } else if (state == ImageState.leftRunning1){
+      image = ruteLeftRunning1;
+    } else if (state == ImageState.leftRunning2){
+      image = ruteLeftRunning2;
+    } else if (state == ImageState.arrowTwo){
+      image = arrowTwoImage;
+    } else if (state == ImageState.leftBiking){
+      image = ruteLeftBiking;
+    } else if (state == ImageState.rightBiking){
+      image = ruteRightBiking;
+    } else if (state == ImageState.leftBiking1){
+      image = ruteLeftBiking1;
+    } else if (state == ImageState.rightBiking1){
+      image = ruteRightBiking1;
+    } else if (state == ImageState.arrowThree){
+      image = arrowThreeImage;
     }
 
 
