@@ -24,8 +24,6 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
       xPos = 0;
     }
 
-    print(birthday.value);
-
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage

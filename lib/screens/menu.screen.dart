@@ -19,12 +19,12 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
       child: Column(
         children: <Widget>[
+          SizedBox(height: 300,),
           BirthdayButton(
             title: 'Começar',
             color: Colors.red,
             onPressed: () => Navigator.popAndPushNamed(context, 'start.screen'),
-
-          )
+          ),
         ],
       ),
     );
