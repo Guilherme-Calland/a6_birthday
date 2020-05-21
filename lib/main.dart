@@ -1,3 +1,4 @@
+import 'package:a6_birthday/screens/end.screen.dart';
 import 'package:a6_birthday/screens/level.one.dart';
 import 'package:a6_birthday/screens/level.three.dart';
 import 'package:a6_birthday/screens/level.two.dart';
@@ -27,11 +28,12 @@ class BirthDay extends StatelessWidget {
       ),
       initialRoute: 'level.three',
       routes: {
-        'menu.screen' : (context) => MenuScreen(),
+        'menu.screen' :  (context) => MenuScreen(),
         'start.screen' : (context) => StartScreen(),
-        'level.one' : (context) => LevelOne(),
-        'level.two' : (context) => LevelTwo(),
-        'level.three' : (context) => LevelThree()
+        'level.one' :    (context) => LevelOne(),
+        'level.two' :    (context) => LevelTwo(),
+        'level.three' :  (context) => LevelThree(),
+        'end.screen':           (context) => EndScreen()
       }
     );
   }

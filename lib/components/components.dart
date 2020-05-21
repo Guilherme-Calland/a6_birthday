@@ -69,10 +69,10 @@ var gameMenu = AssetImage('images/scenario/menu4.png');
 var ruaJacobina = AssetImage('images/scenario/ruaJacobina.png');
 var levelTwo = AssetImage('images/scenario/levelTwo.png');
 var levelThree = AssetImage('images/scenario/levelThree.png');
-var levelOneArrow = Image.asset('images/scenario/level.one.arrow.png');
-var levelTwoArrow = Image.asset('images/scenario/level.two.arrow.png');
-var levelThreeArrow = Image.asset('images/scenario/level.three.arrow.png');
-var bike = Image.asset('images/rute/x2/bike.png');
+var levelOneArrow = Image.asset('images/scenario/level.one.arrow.png', gaplessPlayback:  true);
+var levelTwoArrow = Image.asset('images/scenario/level.two.arrow.png', gaplessPlayback:  true);
+var levelThreeArrow = Image.asset('images/scenario/level.three.arrow.png', gaplessPlayback:  true);
+var bike = Image.asset('images/rute/x2/bike.png', gaplessPlayback: true,);
 
 final GlobalKey<AnimatorWidgetState> levelOneSlideInKey =
 GlobalKey<AnimatorWidgetState>();

@@ -17,13 +17,11 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
 
     if(xPos > -120){
       biking = true;
-      yPos = -28;
+      yPos = -88;
     } else {
       biking = false;
       yPos = -50;
     }
-
-    // print(loadingLvl3Animation.value);
 
     return Container(
       decoration: BoxDecoration(
@@ -34,7 +32,6 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
       ),
       child: Column(
         children: <Widget>[
-          // SizedBox(height: 10,),
            !biking?
               Transform.translate
               (
@@ -42,57 +39,48 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
                 child: bike
               )
               :
-              SizedBox(width: 100,),
+              Transform.translate(offset: Offset(-700,0), child: bike,),
           showLevelThreeArrow ? 
             removeLevelThreeArrow ?
               SlideOutRight(child: levelThreeArrow) : SlideInLeft(child: levelThreeArrow) 
           :
-          Container( height: 198,)
+            Transform.translate( offset: Offset(-600, 0), child: levelThreeArrow)
           ,
-          !loadingLevelThreeScreen ? 
           Rute(
             xOffset: xPos,
             yOffset: yPos,
             state : state,
-          )
-          :
-          Container(
-            height: 52,
-            child: Rute(
-              xOffset: xPos,
-              yOffset: -400,
-              state: state,
-            ),
           ),
-          !biking? SizedBox(height: 0,) : SizedBox( height: 35,),
-          !loadingLevelThreeScreen?
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              BirthdayButton(
-                title: 'Esquer',
-                color: Colors.green,
-                onPressed: (){
-                  goLeft();
-                },
-              ),
-              BirthdayButton(
-                title: 'Parar',
-                color: Colors.red,
-                onPressed: (){
-                  stop();
-                },
-              ),
-              BirthdayButton(
-                title: 'Direita',
-                color: Colors.green,
-                onPressed: (){
-                  goRight();
-                },
-              ),
-            ],
+          !biking? SizedBox(height: 0,) : SizedBox( height: 0,),
+          Transform.translate(
+            offset: Offset(0, -50),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                BirthdayButton(
+                  title: 'Esquer',
+                  color: Colors.green,
+                  onPressed: (){
+                    goLeft();
+                  },
+                ),
+                BirthdayButton(
+                  title: 'Parar',
+                  color: Colors.red,
+                  onPressed: (){
+                    stop();
+                  },
+                ),
+                BirthdayButton(
+                  title: 'Direita',
+                  color: Colors.green,
+                  onPressed: (){
+                    goRight();
+                  },
+                ),
+              ],
+            ),
           )
-          : SizedBox()
         ],
       ),
     );
@@ -118,8 +106,6 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
           state = ImageState.rightBiking
         :
           state = ImageState.stillRight;
-
-
     });
   }
 
@@ -127,41 +113,6 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
     moveAnimationController.reverse();
     legsAnimationController.repeat();
     direction = Direction.left;
-  }
-
-  void startLoading() {
-    loadingLvl3AnimationController = AnimationController(
-      duration: Duration(seconds: 2), vsync: this, value: 0.00);
-    loadingLvl3Animation =
-    Tween<double>(begin: 1300, end: 0).animate(loadingLvl3AnimationController)
-    ..addListener(() {
-      if(loadingLvl3Animation.value > 1200){
-        state = ImageState.rightRunning2;
-      }else if(loadingLvl3Animation.value > 1100){
-        state = ImageState.rightRunning1;
-      }else if(loadingLvl3Animation.value > 1000){
-        state = ImageState.leftRunning2;
-      }else if(loadingLvl3Animation.value > 900){
-        state = ImageState.leftRunning1;
-      }else if(loadingLvl3Animation.value > 800){
-        state = ImageState.arrowThree;
-      } else if(loadingLvl3Animation.value > 700){
-        state = ImageState.leftBiking;
-      } else if(loadingLvl3Animation.value > 600){
-        state = ImageState.leftBiking1;
-      } else if(loadingLvl3Animation.value > 400){
-        state = ImageState.rightBiking;
-      } else if(loadingLvl3Animation.value > 300){
-        state = ImageState.rightBiking1;
-      } else if (loadingLvl3Animation.value > 100){
-        state = ImageState.stillLeft;
-      } else {
-        state = ImageState.stillRight;
-      }
-      if(loadingLvl3Animation.isCompleted){
-        loadingLevelThreeScreen = false;
-      }
-    setState(() {});});
   }
 
   void startMoving() {
@@ -234,8 +185,6 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
     super.initState();
     Rute.folder = 'x2';
     yPos = 0;
-    startLoading();
-    loadingLvl3AnimationController.forward();
     startMoving();
     startLegs();
     startArrow();
@@ -246,8 +195,9 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
-    loadingLvl3AnimationController.dispose();
     levelThreeArrowAnimationController.dispose();
+    moveAnimationController.stop();
+    legsAnimationController.stop();
+    super.dispose();
   }
 }

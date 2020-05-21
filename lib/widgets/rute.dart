@@ -8,30 +8,30 @@ class Rute extends StatelessWidget {
   Rute({this.xOffset = 0, this.yOffset = 0, this.state = ImageState.stillRight});
 
   var image;
-  var ruteRight = Image.asset('images/rute/$folder/rute.right.png');
-  var ruteLeft = Image.asset('images/rute/$folder/rute.left.png');
-  var ruteRightLegUp1 = Image.asset('images/rute/$folder/rute.right.legUp1.png');
-  var ruteRightLegUp2 = Image.asset('images/rute/$folder/rute.right.legUp2.png');
-  var ruteLeftLegUp1 = Image.asset('images/rute/$folder/rute.left.legUp1.png');
-  var ruteLeftLegUp2 = Image.asset('images/rute/$folder/rute.left.legUp2.png');
-  var ruteLeftOpenDoor = Image.asset('images/rute/$folder/rute.left.openDoor.png');
-  var arrowOneImage = Image.asset('images/scenario/level.one.arrow.png');
-  var arrowTwoImage = Image.asset('images/scenario/level.two.arrow.png');
-  var arrowThreeImage = Image.asset('images/scenario/level.three.arrow.png');
-  var ruteLeftRunning1 = Image.asset('images/rute/$folder/rute.left.running1.png');
-  var ruteLeftRunning2 = Image.asset('images/rute/$folder/rute.left.running2.png');
-  var ruteRightRunning1 = Image.asset('images/rute/$folder/rute.right.running1.png');
-  var ruteRightRunning2 = Image.asset('images/rute/$folder/rute.right.running2.png');
-  var ruteRightSwimming = Image.asset('images/rute/$folder/rute.swimming.right.png');
-  var ruteRightSwimming1 = Image.asset('images/rute/$folder/rute.swimming.right1.png');
-  var ruteRightSwimming2 = Image.asset('images/rute/$folder/rute.swimming.right2.png');
-  var ruteLeftSwimming = Image.asset('images/rute/$folder/rute.swimming.left.png');
-  var ruteLeftSwimming1 = Image.asset('images/rute/$folder/rute.swimming.left1.png');
-  var ruteLeftSwimming2 = Image.asset('images/rute/$folder/rute.swimming.left2.png');
-  var ruteRightBiking = Image.asset('images/rute/$folder/rute.biking.right.png');
-  var ruteRightBiking1 = Image.asset('images/rute/$folder/rute.right.biking1.png');
-  var ruteLeftBiking = Image.asset('images/rute/$folder/rute.biking.left.png');
-  var ruteLeftBiking1 = Image.asset('images/rute/$folder/rute.left.biking1.png');
+  var ruteRight = Image.asset('images/rute/$folder/rute.right.png', gaplessPlayback: true,);
+  var ruteLeft = Image.asset('images/rute/$folder/rute.left.png', gaplessPlayback: true,);
+  var ruteRightLegUp1 = Image.asset('images/rute/$folder/rute.right.legUp1.png', gaplessPlayback: true,);
+  var ruteRightLegUp2 = Image.asset('images/rute/$folder/rute.right.legUp2.png', gaplessPlayback: true,);
+  var ruteLeftLegUp1 = Image.asset('images/rute/$folder/rute.left.legUp1.png', gaplessPlayback: true,);
+  var ruteLeftLegUp2 = Image.asset('images/rute/$folder/rute.left.legUp2.png', gaplessPlayback: true,);
+  var ruteLeftOpenDoor = Image.asset('images/rute/$folder/rute.left.openDoor.png', gaplessPlayback: true,);
+  var arrowOneImage = Image.asset('images/scenario/level.one.arrow.png', gaplessPlayback: true,);
+  var arrowTwoImage = Image.asset('images/scenario/level.two.arrow.png', gaplessPlayback: true,);
+  var arrowThreeImage = Image.asset('images/scenario/level.three.arrow.png', gaplessPlayback: true,);
+  var ruteLeftRunning1 = Image.asset('images/rute/$folder/rute.left.running1.png', gaplessPlayback: true,);
+  var ruteLeftRunning2 = Image.asset('images/rute/$folder/rute.left.running2.png', gaplessPlayback: true,);
+  var ruteRightRunning1 = Image.asset('images/rute/$folder/rute.right.running1.png', gaplessPlayback: true,);
+  var ruteRightRunning2 = Image.asset('images/rute/$folder/rute.right.running2.png', gaplessPlayback: true,);
+  var ruteRightSwimming = Image.asset('images/rute/$folder/rute.swimming.right.png', gaplessPlayback: true,);
+  var ruteRightSwimming1 = Image.asset('images/rute/$folder/rute.swimming.right1.png', gaplessPlayback: true,);
+  var ruteRightSwimming2 = Image.asset('images/rute/$folder/rute.swimming.right2.png', gaplessPlayback: true,);
+  var ruteLeftSwimming = Image.asset('images/rute/$folder/rute.swimming.left.png', gaplessPlayback: true,);
+  var ruteLeftSwimming1 = Image.asset('images/rute/$folder/rute.swimming.left1.png', gaplessPlayback: true,);
+  var ruteLeftSwimming2 = Image.asset('images/rute/$folder/rute.swimming.left2.png', gaplessPlayback: true,);
+  var ruteRightBiking = Image.asset('images/rute/$folder/rute.biking.right.png', gaplessPlayback: true,);
+  var ruteRightBiking1 = Image.asset('images/rute/$folder/rute.right.biking1.png', gaplessPlayback: true,);
+  var ruteLeftBiking = Image.asset('images/rute/$folder/rute.biking.left.png', gaplessPlayback: true,);
+  var ruteLeftBiking1 = Image.asset('images/rute/$folder/rute.left.biking1.png', gaplessPlayback: true,);
 
 
   @override

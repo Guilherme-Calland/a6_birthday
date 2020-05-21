@@ -37,26 +37,14 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
             removeLevelTwoArrow ?
               SlideOutRight(child: levelTwoArrow) : SlideInLeft(child: levelTwoArrow) 
           :
-          SizedBox( height: 198,)
+          Transform.translate(offset: Offset(-600,0), child: levelTwoArrow,)
           ,
-          // SizedBox(height: 210,),
-          !loadingLevelTwoScreen? 
           Rute(
             xOffset: xPos,
             yOffset: yPos,
             state : state,
-          )
-          :
-          Container(
-            height: 52,
-            child: Rute(
-              xOffset: xPos,
-              yOffset: -400,
-              state: state,
-            ),
           ),
           SizedBox(height: 65,),
-          !loadingLevelTwoScreen?
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -83,7 +71,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
               ),
             ],
           )
-          : SizedBox()
         ],
       ),
     );
@@ -109,8 +96,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
           state = ImageState.rightSwimming
         :
           state = ImageState.stillRight;
-
-
     });
   }
 
@@ -118,45 +103,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     moveAnimationController.reverse();
     legsAnimationController.repeat();
     direction = Direction.left;
-  }
-
-  void startLoading() {
-    loadingLvl2AnimationController = AnimationController(
-      duration: Duration(seconds: 2), vsync: this, value: 0.00);
-    loadingLvl2Animation =
-    Tween<double>(begin: 1300, end: 0).animate(loadingLvl2AnimationController)
-    ..addListener(() {
-      if(loadingLvl2Animation.value > 1200){
-        state = ImageState.rightRunning2;
-      }else if(loadingLvl2Animation.value > 1100){
-        state = ImageState.rightRunning1;
-      }else if(loadingLvl2Animation.value > 1000){
-        state = ImageState.leftRunning2;
-      }else if(loadingLvl2Animation.value > 900){
-        state = ImageState.leftRunning1;
-      }else if(loadingLvl2Animation.value > 800){
-        state = ImageState.arrowTwo;
-      } else if(loadingLvl2Animation.value > 700){
-        state = ImageState.leftSwimming;
-      } else if(loadingLvl2Animation.value > 600){
-        state = ImageState.leftSwimming1;
-      } else if(loadingLvl2Animation.value > 500){
-        state = ImageState.leftSwimming2;
-      } else if(loadingLvl2Animation.value > 400){
-        state = ImageState.rightSwimming;
-      } else if(loadingLvl2Animation.value > 300){
-        state = ImageState.rightSwimming1;
-      } else if(loadingLvl2Animation.value > 200){
-        state = ImageState.rightSwimming2;
-      } else if (loadingLvl2Animation.value > 100){
-        state = ImageState.stillLeft;
-      } else {
-        state = ImageState.stillRight;
-      }
-      if(loadingLvl2Animation.isCompleted){
-        loadingLevelTwoScreen = false;
-      }
-    setState(() {});});
   }
 
   void startMoving() {
@@ -229,8 +175,6 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     super.initState();
     Rute.folder = 'x2';
     yPos = 0;
-    startLoading();
-    loadingLvl2AnimationController.forward();
     startMoving();
     startLegs();
     startArrow();
