@@ -64,6 +64,11 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
     ..addListener(() { 
       if(birthday.value >= 0){
         startBirthdaySequence = true;
+        legsAnimationController.repeat();
+      }
+      if(birthday.isCompleted){
+        legsAnimationController.stop();
+        state = ImageState.rightSmiling;
       }
       setState(() {
         
@@ -78,6 +83,22 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
     state = ImageState.rightSmiling;
     startBirthday();    
     birthdayController.forward();
+    startLegs();
+  }
+
+  void startLegs() {
+    legsAnimationController = AnimationController(
+      duration: Duration(milliseconds: 250), vsync: this);
+    legsAnimation = 
+    Tween<double>(
+      begin: 1, end: 200
+    ).animate(legsAnimationController)
+    ..addListener(() {
+      legsAnimation.value >= 100 ?
+      state = ImageState.rightSmiling1 :
+      state = ImageState.rightSmiling2;
+      setState(() {});
+    });
   }
 
   @override
