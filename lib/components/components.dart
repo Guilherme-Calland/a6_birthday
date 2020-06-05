@@ -77,6 +77,7 @@ var levelTwoArrow = Image.asset('images/scenario/level.two.arrow.png', gaplessPl
 var levelThreeArrow = Image.asset('images/scenario/level.three.arrow.png', gaplessPlayback:  true);
 var family = Image.asset('images/familia/familia.png', gaplessPlayback: true,);
 var bike = Image.asset('images/rute/x2/bike.png', gaplessPlayback: true,);
+var happyBirthday = Image.asset('images/scenario/happyBirthday.png', gaplessPlayback: true,);
 
 final GlobalKey<AnimatorWidgetState> levelOneSlideInKey =
 GlobalKey<AnimatorWidgetState>();

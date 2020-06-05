@@ -160,7 +160,7 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     levelTwoArrowAnimation =
     Tween<double>(begin: 0, end: 400).animate(levelTwoArrowAnimationController)
     ..addListener(() {
-      if(levelTwoArrowAnimation.value >= 200){
+      if(levelTwoArrowAnimation.value >= 100){
         showLevelTwoArrow = true;
       }
     
@@ -175,6 +175,7 @@ class _LevelTwoState extends State<LevelTwo> with TickerProviderStateMixin{
     super.initState();
     Rute.folder = 'x2';
     yPos = 0;
+    state = ImageState.stillRight;
     startMoving();
     startLegs();
     startArrow();

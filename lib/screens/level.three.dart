@@ -170,7 +170,7 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
     levelThreeArrowAnimation =
     Tween<double>(begin: 0, end: 400).animate(levelThreeArrowAnimationController)
     ..addListener(() {
-      if(levelThreeArrowAnimation.value >= 200){
+      if(levelThreeArrowAnimation.value >= 100){
         showLevelThreeArrow = true;
       }
     
@@ -184,6 +184,7 @@ class _LevelThreeState extends State<LevelThree> with TickerProviderStateMixin{
   initState(){
     super.initState();
     Rute.folder = 'x2';
+    state = ImageState.stillRight;
     yPos = 0;
     startMoving();
     startLegs();

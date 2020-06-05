@@ -1,19 +1,19 @@
 import 'package:a6_birthday/components/components.dart';
 import 'package:a6_birthday/widgets/rute.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 
 class LevelFour extends StatefulWidget {
   @override
   _LevelFourState createState() => _LevelFourState();
 }
 
-
-
 class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
 
   AnimationController birthdayController;
   Animation birthday;
   bool startBirthdaySequence = false;
+  bool showHappyBirthday = false;
   
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,17 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
       ),
       child: Column(
         children: <Widget>[
-          SizedBox(height: 260,),
+          SizedBox(height: 95,),
+          showHappyBirthday ? 
+          SlideInUp(
+            child: happyBirthday 
+          )
+          :
+          Transform.translate(
+            offset: Offset(-1000,0),
+            child: happyBirthday
+          ),
+          SizedBox(height: 10,),
           Row(
             children: <Widget>[
               Container(
@@ -58,7 +68,7 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
     birthdayController = AnimationController(
       duration: Duration(seconds: 5), vsync: this
     );
-    birthday = Tween<double>(begin: -100, end: 300).animate(birthdayController)
+    birthday = Tween<double>(begin: -100, end: 298).animate(birthdayController)
     ..addListener(() { 
       if(birthday.value >= 0){
         startBirthdaySequence = true;
@@ -67,6 +77,7 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
       if(birthday.isCompleted){
         legsAnimationController.stop();
         state = ImageState.rightSmiling;
+        showHappyBirthday = true;
       }
       setState(() {
         
@@ -74,16 +85,7 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
     });
   }
 
-  @override
-  void initState(){
-    super.initState();
-    Rute.folder = 'x2'; 
-    state = ImageState.rightSmiling;
-    startBirthday();    
-    birthdayController.forward();
-    startLegs();
-  }
-
+ 
   void startLegs() {
     legsAnimationController = AnimationController(
       duration: Duration(milliseconds: 250), vsync: this);
@@ -98,6 +100,17 @@ class _LevelFourState extends State<LevelFour> with TickerProviderStateMixin{
       setState(() {});
     });
   }
+
+  @override
+  void initState(){
+    super.initState();
+    Rute.folder = 'x2'; 
+    state = ImageState.rightSmiling;
+    startBirthday();    
+    birthdayController.forward();
+    startLegs();
+  }
+
 
   @override
   void dispose(){

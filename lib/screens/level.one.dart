@@ -241,7 +241,7 @@ class _LevelOneState extends State<LevelOne> with TickerProviderStateMixin{
     levelOneArrowAnimation =
     Tween<double>(begin: 0, end: 400).animate(levelOneArrowAnimationController)
     ..addListener(() {
-      if(levelOneArrowAnimation.value >= 200){
+      if(levelOneArrowAnimation.value >= 100){
         showLevelOneArrow = true;
       }
     
